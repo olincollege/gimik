@@ -13,6 +13,8 @@ test_2.set_pos(1,2,3)
 cylinder1 = Cylinder(1,2,2)
 cylinder1.set_pos(1,1,1)
 
+cube1 = Cuboid(5, 3, 1)
+
 print(f'{test_1}\n{test_2}\n{cylinder1}')
 
 shapes = [test_1, test_2]
@@ -36,6 +38,8 @@ ax = fig.add_subplot(111, projection='3d')
 #     ax.plot_surface(x, y, z, color='b')
 
 cylinder1.plot(ax)
+test_1.plot(ax)
+cube1.plot(ax)
 
 #rstride = 20
 #cstride = 10

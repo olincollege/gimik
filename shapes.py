@@ -40,7 +40,7 @@ class Shape():
         self._z = z
     
     @abstractmethod
-    def plot():
+    def plot(self):
         pass
 
 #List of Shapes:
@@ -82,6 +82,30 @@ class Cuboid(Shape):
     
     def move_z(self, displacement):
         self._z += displacement
+    
+    def _get_points_to_plot(self, axis_1_max, axis_1_min, axis_2_max, axis_2_min, axis_3_val):
+        axis_1 = np.arange(axis_1_min,axis_1_max, (axis_1_max - axis_1_min) / 2)
+        axis_2 = np.arange(axis_2_min,axis_2_max, (axis_2_max - axis_2_min) / 2)
+        axis_1_a, axis_2_a = np.meshgrid(axis_1,axis_2)
+        axis_3_a = axis_1_a * 0 + axis_3_val
+        return axis_1_a, axis_2_a, axis_3_a
+    
+    def plot(self, axes):
+        min_x = self._x - self._width / 2
+        max_x = self._x + self._width / 2
+        min_y = self._z - self._height / 2
+        max_y = self._z + self._height / 2
+        min_z = self._z - self._depth / 2
+        max_z = self._z + self._depth / 2
+        
+        #note - not working properly, gets axes swapped and im not sure why
+        #top
+        X, Y, Z = self._get_points_to_plot(max_x, min_x, max_z, min_z, max_y)
+        axes.plot_surface(X, Y, Z, color='b')
+        #bottom
+        X, Y, Z = self._get_points_to_plot(max_x, min_x, max_z, min_z, min_y)
+        axes.plot_surface(X, Y, Z, color='b')
+
 
     def __repr__(self):
         return f'Width:{self._width}\nHeight:{self._height}\nDepth:{self._depth}\nCoordinates:{self._x},{self._y},{self._z}'
@@ -147,6 +171,20 @@ class Spheroid(Shape):
     
     def move_z(self, displacement):
         self._z += displacement
+
+    def plot(self, axes):
+        u = np.linspace(0, 2 * np.pi, 50)
+        v = np.linspace(0, np.pi, 50)
+        x = self._width * np.outer(np.cos(u), np.sin(v))
+        y = self._height * np.outer(np.sin(u), np.sin(v))
+        z = self._depth * np.outer(np.ones(np.size(u)), np.cos(v))
+        for item in x:
+            item += self.x
+        for item in y:
+            item += self.y
+        for item in z:
+            item += self.z
+        axes.plot_surface(x, y, z, color='b')
 
     def __repr__(self):
         return f'Spheroid:\nWidth: {self._width}\nHeight: {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, {self._y}, {self._z}'
