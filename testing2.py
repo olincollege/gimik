@@ -13,7 +13,7 @@ test_2.set_pos(1,2,3)
 cylinder1 = Cylinder(1,2,2)
 cylinder1.set_pos(1,1,1)
 
-cube1 = Cuboid(5, 3, 1)
+cube1 = Cuboid(1, 4, 2, 3, 3)
 
 print(f'{test_1}\n{test_2}\n{cylinder1}')
 

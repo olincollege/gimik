@@ -84,8 +84,8 @@ class Cuboid(Shape):
         self._z += displacement
     
     def _get_points_to_plot(self, axis_1_max, axis_1_min, axis_2_max, axis_2_min, axis_3_val):
-        axis_1 = np.arange(axis_1_min,axis_1_max, (axis_1_max - axis_1_min) / 2)
-        axis_2 = np.arange(axis_2_min,axis_2_max, (axis_2_max - axis_2_min) / 2)
+        axis_1 = np.arange(axis_1_min,axis_1_max + (axis_1_max - axis_1_min) / 2, (axis_1_max - axis_1_min) / 2)
+        axis_2 = np.arange(axis_2_min,axis_2_max + (axis_2_max - axis_2_min) / 2, (axis_2_max - axis_2_min) / 2)
         axis_1_a, axis_2_a = np.meshgrid(axis_1,axis_2)
         axis_3_a = axis_1_a * 0 + axis_3_val
         return axis_1_a, axis_2_a, axis_3_a
@@ -98,12 +98,25 @@ class Cuboid(Shape):
         min_z = self._z - self._depth / 2
         max_z = self._z + self._depth / 2
         
-        #note - not working properly, gets axes swapped and im not sure why
         #top
-        X, Y, Z = self._get_points_to_plot(max_x, min_x, max_z, min_z, max_y)
+        X, Z, Y = self._get_points_to_plot(max_x, min_x, max_z, min_z, max_y)
         axes.plot_surface(X, Y, Z, color='b')
         #bottom
-        X, Y, Z = self._get_points_to_plot(max_x, min_x, max_z, min_z, min_y)
+        X, Z, Y = self._get_points_to_plot(max_x, min_x, max_z, min_z, min_y)
+        axes.plot_surface(X, Y, Z, color='b')
+
+        #left
+        Y, Z, X = self._get_points_to_plot(max_y, min_y, max_z, min_z, min_x)
+        axes.plot_surface(X, Y, Z, color='b')
+        #right
+        Y, Z, X = self._get_points_to_plot(max_y, min_y, max_z, min_z, max_x)
+        axes.plot_surface(X, Y, Z, color='b')
+
+        #front
+        X, Y, Z = self._get_points_to_plot(max_x, min_x, max_y, min_y, max_z)
+        axes.plot_surface(X, Y, Z, color='b')
+        #back
+        X, Y, Z = self._get_points_to_plot(max_x, min_x, max_y, min_y, min_z)
         axes.plot_surface(X, Y, Z, color='b')
 
 
