@@ -54,10 +54,10 @@ input_z_change = tkinter.Button(top, text = "Change Z")
 input_z_change.place(x = base_width * col_1_x_val, y = 8 * base_height, height = base_height, width = base_width)
 
 #select next and previous
-select_next_button = tkinter.Button(top, text = "Select Next Shape")
+select_next_button = tkinter.Button(top, text = "Select Previous Shape")
 select_next_button.place(x = base_width * col_2_x_val, y = 8 * base_height, height = base_height, width = base_width)
 
-select_prev_button = tkinter.Button(top, text = "Select Previous Shape")
+select_prev_button = tkinter.Button(top, text = "Select Next Shape")
 select_prev_button.place(x = base_width * col_3_x_val, y = 8 * base_height, height = base_height, width = base_width)
 
 #scale set amount:
