@@ -2,9 +2,10 @@ from shapes import Shape, Cuboid, Spheroid, Cylinder
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
+from workspace import Workspace
 
 
-test_1 = Spheroid(1,1,1)
+test_1 = Spheroid(1,1,1, name="Spheroid 1")
 test_1.set_pos(-3, 2, 1)
 
 test_2 = Spheroid(0.5, 3, 0.5)
@@ -15,11 +16,17 @@ cylinder1.set_pos(1,1,1)
 
 cube1 = Cuboid(1, 4, 2, 3, 3)
 
-print(f'{test_1}\n{test_2}\n{cylinder1}')
+#print(f'{test_1}\n{test_2}\n{cylinder1}')
 
 shapes = [test_1, test_2]
 
-fig = plt.figure()
+workspace1 = Workspace()
+print(workspace1)
+
+workspace1._items.append(test_1)
+print(workspace1)
+
+fig = plt.figure()  
 ax = fig.add_subplot(111, projection='3d')
 
 # for shape in shapes:
@@ -52,4 +59,4 @@ ax.set_zlabel('z')
 #ax.set_box_aspect((1, 1, 1))
 ax.auto_scale_xyz([-5, 5], [-5, 5], [-5, 5])
 plt.show()
-print(test_1.height)
+#print(test_1.height)

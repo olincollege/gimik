@@ -50,10 +50,12 @@ class Cuboid(Shape):
     Add docstring here.
     """
     
-    def __init__(self, width, height, depth, x = 0, y = 0, z = 0):
+    def __init__(self, width, height, depth, x = 0, y = 0, z = 0, 
+        name = "An unnamed cuboid"):
         self._width = width
         self._height = height
         self._depth = depth
+        self._name = name
 
         #Coordinates of center of the shape (if none given, puts shape at origin)
         self._x = x
@@ -82,6 +84,13 @@ class Cuboid(Shape):
     
     def move_z(self, displacement):
         self._z += displacement
+    
+    def set_name(self, new_name):
+        self._name = new_name
+
+    @property
+    def name(self):
+        return self._name
     
     def _get_points_to_plot(self, axis_1_max, axis_1_min, axis_2_max, axis_2_min, axis_3_val):
         axis_1 = np.arange(axis_1_min,axis_1_max + (axis_1_max - axis_1_min) / 2, (axis_1_max - axis_1_min) / 2)
@@ -121,17 +130,19 @@ class Cuboid(Shape):
 
 
     def __repr__(self):
-        return f'Width:{self._width}\nHeight:{self._height}\nDepth:{self._depth}\nCoordinates:{self._x},{self._y},{self._z}'
+        return f'Name: {self.name}\nWidth:{self._width}\nHeight:{self._height}\nDepth:{self._depth}\nCoordinates:{self._x},{self._y},{self._z}'
 
 class Spheroid(Shape):
     """
     Add docstring here.
     """
     
-    def __init__(self, width, height, depth, x = 0, y = 0, z = 0):
+    def __init__(self, width, height, depth, x = 0, y = 0, z = 0,
+        name = "An unnamed spheroid"):
         self._width = width
         self._height = height
         self._depth = depth
+        self._name = name
 
         #Coordinates of center of the shape (if none given, puts shape at origin)
         self._x = x
@@ -184,6 +195,13 @@ class Spheroid(Shape):
     
     def move_z(self, displacement):
         self._z += displacement
+
+    def set_name(self, new_name):
+        self._name = new_name
+
+    @property
+    def name(self):
+        return self._name
 
     def plot(self, axes):
         u = np.linspace(0, 2 * np.pi, 50)
@@ -200,7 +218,7 @@ class Spheroid(Shape):
         axes.plot_surface(x, y, z, color='b')
 
     def __repr__(self):
-        return f'Spheroid:\nWidth: {self._width}\nHeight: {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, {self._y}, {self._z}'
+        return f'Name: {self.name}\nSpheroid:\nWidth: {self._width}\nHeight: {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, {self._y}, {self._z}'
 
 
 class Cylinder(Shape):
@@ -208,10 +226,12 @@ class Cylinder(Shape):
     Add docstring here.
     """
     
-    def __init__(self, width, height, depth, x = 0, y = 0, z = 0):
+    def __init__(self, width, height, depth, x = 0, y = 0, z = 0,
+        name = "An unnamed cylinder"):
         self._width = width #diameter in the x direction
         self._height = height #height (z direction)
         self._depth = depth #diameter in the y direction
+        self._name = name
 
         #Coordinates of center of the shape (if none given, puts shape at origin)
         self._x = x
@@ -264,7 +284,14 @@ class Cylinder(Shape):
     
     def move_z(self, displacement):
         self._z += displacement
+
+    def set_name(self, new_name):
+        self._name = new_name
     
+    @property
+    def name(self):
+        return self._name
+
     def plot(self, axes):
         radius_x = 1/2*self.width
         radius_y = 1/2*self.depth
@@ -282,4 +309,4 @@ class Cylinder(Shape):
 
 
     def __repr__(self):
-        return f'Cylinder:\nWidth: {self._width}\nHeight: {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, {self._y}, {self._z}'
+        return f'Name: {self.name}\nCylinder:\nWidth: {self._width}\nHeight: {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, {self._y}, {self._z}'
