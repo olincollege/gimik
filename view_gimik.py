@@ -1,7 +1,7 @@
 """
 Plots and visualizes the 3D shapes in a user's workspace using matplotlib.
 """
-import workspace
+from workspace import Workspace
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
