@@ -20,6 +20,13 @@ class Workspace():
         name = "An unnamed cuboid"):
 
         return None
+    
+    '''
+    def make_cylinder(self, name = "Cylinder", width, height, depth, x = 0, y = 0, z = 0): 
+        #not sure if this would work but essentially creates new cylinder and appends to workspace
+        name = Cylinder(width, height, depth, x, y, z)
+        self._items.append(name)
+    '''
 
     def __repr__(self):
         one_item = len(self.items) == 1
