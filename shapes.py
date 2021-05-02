@@ -99,11 +99,11 @@ class Cuboid(Shape):
         axis_3_a = axis_1_a * 0 + axis_3_val
         return axis_1_a, axis_2_a, axis_3_a
     
-    def plot(self, axes):
+    def plot(self, axes, color = 'b'):
         min_x = self._x - self._width / 2
         max_x = self._x + self._width / 2
-        min_y = self._z - self._height / 2
-        max_y = self._z + self._height / 2
+        min_y = self._y - self._height / 2
+        max_y = self._y + self._height / 2
         min_z = self._z - self._depth / 2
         max_z = self._z + self._depth / 2
         
@@ -126,7 +126,7 @@ class Cuboid(Shape):
         axes.plot_surface(X, Y, Z, color='b')
         #back
         X, Y, Z = self._get_points_to_plot(max_x, min_x, max_y, min_y, min_z)
-        axes.plot_surface(X, Y, Z, color='b')
+        axes.plot_surface(X, Y, Z, color=color)
 
 
     def __repr__(self):
@@ -203,7 +203,7 @@ class Spheroid(Shape):
     def name(self):
         return self._name
 
-    def plot(self, axes):
+    def plot(self, axes, color = 'b'):
         u = np.linspace(0, 2 * np.pi, 50)
         v = np.linspace(0, np.pi, 50)
         x = self._width * np.outer(np.cos(u), np.sin(v))
@@ -215,7 +215,7 @@ class Spheroid(Shape):
             item += self.y
         for item in z:
             item += self.z
-        axes.plot_surface(x, y, z, color='b')
+        axes.plot_surface(x, y, z, color=color)
 
     def __repr__(self):
         return f'Name: {self.name}\nSpheroid:\nWidth: {self._width}\nHeight: {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, {self._y}, {self._z}'
@@ -292,11 +292,11 @@ class Cylinder(Shape):
     def name(self):
         return self._name
 
-    def plot(self, axes):
+    def plot(self, axes, color = 'b'):
         radius_x = 1/2*self.width
         radius_y = 1/2*self.depth
 
-        z = np.linspace(0,self.height, 50)
+        z = np.linspace(0-(self.height/2),self.height-(self.height/2), 50)
         theta = np.linspace(0, 2*np.pi, 50)
         theta_grid, z_grid = np.meshgrid(theta,z)
 
@@ -305,8 +305,8 @@ class Cylinder(Shape):
 
         rstride = 20
         cstride = 10
-        axes.plot_surface(x_grid, y_grid, z_grid, alpha = 0.2, rstride = rstride, cstride = cstride)
-
+        axes.plot_surface(x_grid, y_grid, z_grid, rstride = rstride, cstride = cstride, color=color)
+        
 
     def __repr__(self):
         return f'Name: {self.name}\nCylinder:\nWidth: {self._width}\nHeight: {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, {self._y}, {self._z}'
