@@ -99,7 +99,7 @@ class Cuboid(Shape):
         axis_3_a = axis_1_a * 0 + axis_3_val
         return axis_1_a, axis_2_a, axis_3_a
     
-    def plot(self, axes, color = 'b'):
+    def plot(self, axes, color = 'lightskyblue'):
         min_x = self._x - self._width / 2
         max_x = self._x + self._width / 2
         min_y = self._y - self._height / 2
@@ -109,21 +109,21 @@ class Cuboid(Shape):
         
         #top
         X, Z, Y = self._get_points_to_plot(max_x, min_x, max_z, min_z, max_y)
-        axes.plot_surface(X, Y, Z, color='b')
+        axes.plot_surface(X, Y, Z, color=color)
         #bottom
         X, Z, Y = self._get_points_to_plot(max_x, min_x, max_z, min_z, min_y)
-        axes.plot_surface(X, Y, Z, color='b')
+        axes.plot_surface(X, Y, Z, color=color)
 
         #left
         Y, Z, X = self._get_points_to_plot(max_y, min_y, max_z, min_z, min_x)
-        axes.plot_surface(X, Y, Z, color='b')
+        axes.plot_surface(X, Y, Z, color=color)
         #right
         Y, Z, X = self._get_points_to_plot(max_y, min_y, max_z, min_z, max_x)
-        axes.plot_surface(X, Y, Z, color='b')
+        axes.plot_surface(X, Y, Z, color=color)
 
         #front
         X, Y, Z = self._get_points_to_plot(max_x, min_x, max_y, min_y, max_z)
-        axes.plot_surface(X, Y, Z, color='b')
+        axes.plot_surface(X, Y, Z, color=color)
         #back
         X, Y, Z = self._get_points_to_plot(max_x, min_x, max_y, min_y, min_z)
         axes.plot_surface(X, Y, Z, color=color)
@@ -203,12 +203,12 @@ class Spheroid(Shape):
     def name(self):
         return self._name
 
-    def plot(self, axes, color = 'b'):
+    def plot(self, axes, color = 'lightskyblue'):
         u = np.linspace(0, 2 * np.pi, 50)
         v = np.linspace(0, np.pi, 50)
-        x = self._width * np.outer(np.cos(u), np.sin(v))
-        y = self._height * np.outer(np.sin(u), np.sin(v))
-        z = self._depth * np.outer(np.ones(np.size(u)), np.cos(v))
+        x = self._width/2 * np.outer(np.cos(u), np.sin(v))
+        y = self._height/2 * np.outer(np.sin(u), np.sin(v))
+        z = self._depth/2 * np.outer(np.ones(np.size(u)), np.cos(v))
         for item in x:
             item += self.x
         for item in y:
@@ -292,7 +292,7 @@ class Cylinder(Shape):
     def name(self):
         return self._name
 
-    def plot(self, axes, color = 'b'):
+    def plot(self, axes, color = 'lightskyblue'):
         radius_x = 1/2*self.width
         radius_y = 1/2*self.depth
 
