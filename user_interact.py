@@ -92,7 +92,7 @@ def create_cube(axes):
     item_to_plot = test_workspace.items[-1]
     item_to_plot.plot(axes)
 
-def move_up(axes):
+def move_z(axes):
     '''
     Moves the given shape 1 unit in the positive z direction.
     Args:
@@ -103,72 +103,43 @@ def move_up(axes):
         list_pos = test_workspace.items_pos
         item_to_move = test_workspace.items[list_pos]
         float(move_z_entry.get())
-        item_to_move.move_z(move_z_entry.get())
+        item_to_move.move_z(float(move_z_entry.get()))
         redraw(axes)
     except ValueError:
         print("ValueError: please enter a float!")
 
-    
 
-def move_down(axes):
-    '''
-    Moves the given shape 1 unit in the negative z direction.
-    Args:
-        shape: a Shape object representing the shape to move.
-        axes: an Axes object that is part of the subplot arrangement.
-    '''
-    list_pos = test_workspace.items_pos
-    item_to_move = test_workspace.items[list_pos]
-    item_to_move.move_z(-1)
-    redraw(axes)
-
-def move_left(axes):
+def move_x(axes):
     '''
     Moves the given shape 1 unit in the negative x direction.
     Args:
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    list_pos = test_workspace.items_pos
-    item_to_move = test_workspace.items[list_pos]
-    item_to_move.move_x(-1)
-    redraw(axes)
+    try:
+        list_pos = test_workspace.items_pos
+        item_to_move = test_workspace.items[list_pos]
+        float(move_x_entry.get())
+        item_to_move.move_x(float(move_x_entry.get()))
+        redraw(axes)
+    except ValueError:
+        print("ValueError: please enter a float!")
 
-def move_right(axes):
-    '''
-    Moves the given shape 1 unit in the positive x direction.
-    Args:
-        shape: a Shape object representing the shape to move.
-        axes: an Axes object that is part of the subplot arrangement.
-    '''
-    list_pos = test_workspace.items_pos
-    item_to_move = test_workspace.items[list_pos]
-    item_to_move.move_x(1)
-    redraw(axes)
-
-def move_back(axes):
+def move_y(axes):
     '''
     Moves the given shape 1 unit in the positive y direction.
     Args:
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    list_pos = test_workspace.items_pos
-    item_to_move = test_workspace.items[list_pos]
-    item_to_move.move_y(1)
-    redraw(axes)
-
-def move_forward(axes):
-    '''
-    Moves the given shape 1 unit in the negative y direction.
-    Args:
-        shape: a Shape object representing the shape to move.
-        axes: an Axes object that is part of the subplot arrangement.
-    '''
-    list_pos = test_workspace.items_pos
-    item_to_move = test_workspace.items[list_pos]
-    item_to_move.move_y(-1)
-    redraw(axes)
+    try:
+        list_pos = test_workspace.items_pos
+        item_to_move = test_workspace.items[list_pos]
+        float(move_y_entry.get())
+        item_to_move.move_y(float(move_y_entry.get()))
+        redraw(axes)
+    except ValueError:
+        print("ValueError: please enter a float!")
 
 def scale_shape(axes):
     '''
@@ -314,11 +285,11 @@ move_x_entry = Entry(frame, width = 5)
 move_y_entry = Entry(frame, width = 5)
 
 
-move_z_button = Button(frame, text = 'z', command=lambda:move_up(ax))
+move_z_button = Button(frame, text = 'z', command=lambda:move_z(ax))
 
-move_x_button = Button(frame, text = 'x',command=lambda:move_left(ax))
+move_x_button = Button(frame, text = 'x',command=lambda:move_x(ax))
 
-move_y_button = Button(frame, text = 'y',command=lambda:move_back(ax))
+move_y_button = Button(frame, text = 'y',command=lambda:move_y(ax))
 
 
 move_z_entry.pack(side=LEFT)
