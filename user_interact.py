@@ -7,30 +7,25 @@ from workspace import Workspace
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
-from view_gimik import ViewCAD
 from tkinter import *
 
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.figure import Figure
 from matplotlib.backend_bases import key_press_handler
 
-shapes = list()
-shape_index = 0
-
 test_workspace = Workspace()
 
 def redraw(axes):
-    '''
-    Wipes the figure and redraws all of the shapes created by the user.
-    Args: 
-        axes: an Axes object that is part of the subplot arrangement.
-    '''
     axes.clear()
     for shape in test_workspace.items:
-        shape.plot(axes)
+        if shape is test_workspace.items[test_workspace.items_pos]:
+            shape.plot(axes, '#EAEC1D')
+        else: 
+            shape.plot(axes)
     axes.set_ylabel("y")
     axes.set_xlabel("x")
     axes.set_zlabel("z")
+        
 
 def clear_window(axes):
     '''
@@ -44,25 +39,26 @@ def clear_window(axes):
     axes.set_zlabel("z")
     test_workspace.clear_shapes()
 
+def remove_shape(axes):
+    test_workspace.remove_shape()
+    redraw(axes)
 
-def next_shape(shapes):
+def next_shape(axes):
     '''
-    Select the next shape from the list where all of the user-created shapes are
-    located.
-    Args: 
-        shapes: a list containing the shape objects currently in the user's workspace.
+    Select the next shape from the workspace where all of the user's shapes are
+    stored.
     '''
     test_workspace.next_shape()
+    redraw(axes)
 
 
-def previous_shape(shape_index, shapes):
+def previous_shape(axes):
     '''
-    Select the previous shape from the list where all of the user-created shapes
-    are located.
-    Args: 
-        shape_index: an integer representing the current shape selected.
+    Select the previous shape from the workspace where all of the user's shapes
+    are stored.
     '''
     test_workspace.prev_shape()
+    redraw(axes)
 
 
 def create_cylinder(axes):
@@ -103,10 +99,16 @@ def move_up(axes):
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    list_pos = test_workspace.items_pos
-    item_to_move = test_workspace.items[list_pos]
-    item_to_move.move_z(1)
-    redraw(axes)
+    try:
+        list_pos = test_workspace.items_pos
+        item_to_move = test_workspace.items[list_pos]
+        float(move_z_entry.get())
+        item_to_move.move_z(move_z_entry.get())
+        redraw(axes)
+    except ValueError:
+        print("ValueError: please enter a float!")
+
+    
 
 def move_down(axes):
     '''
@@ -168,7 +170,7 @@ def move_forward(axes):
     item_to_move.move_y(-1)
     redraw(axes)
 
-def scale_shape_up(axes, factor):
+def scale_shape(axes):
     '''
     Scales the given shape by a given factor.
     Args:
@@ -176,10 +178,44 @@ def scale_shape_up(axes, factor):
         axes: an Axes object that is part of the subplot arrangement.
         factor: an integer representing the factor to scale the shape by.
     '''
-    list_pos = test_workspace.items_pos
-    item_to_move = test_workspace.items[list_pos]
-    item_to_move.scale(factor)
-    redraw(axes)
+    try:
+        list_pos = test_workspace.items_pos
+        item_to_move = test_workspace.items[list_pos]
+        float(factor_entry.get())
+        item_to_move.scale(float(factor_entry.get()))
+        redraw(axes)
+    except ValueError:
+        print("ValueError: please enter a float!")
+
+def scale_width(axes):
+    try:
+        list_pos = test_workspace.items_pos
+        item_to_move = test_workspace.items[list_pos]
+        float(width_factor_entry.get())
+        item_to_move.scale_width(float(width_factor_entry.get()))
+        redraw(axes)
+    except ValueError:
+        print("ValueError: please enter a float!")
+
+def scale_depth(axes):
+    try:
+        list_pos = test_workspace.items_pos
+        item_to_move = test_workspace.items[list_pos]
+        float(depth_factor_entry.get())
+        item_to_move.scale_depth(float(depth_factor_entry.get()))
+        redraw(axes)
+    except ValueError:
+        print("ValueError: please enter a float!")
+
+def scale_height(axes):
+    try:
+        list_pos = test_workspace.items_pos
+        item_to_move = test_workspace.items[list_pos]
+        float(height_factor_entry.get())
+        item_to_move.scale_height(float(height_factor_entry.get()))
+        redraw(axes)
+    except ValueError:
+        print("ValueError: please enter a float!")
 
 
 root=Tk()
@@ -202,13 +238,37 @@ toolbar.update()
 frame = Frame(root)
 frame.pack(side= BOTTOM)
 
+frame_2 = Frame(root)
+frame_2.pack(side=BOTTOM)
+
 left_frame = Frame(root)
 left_frame.pack(side=LEFT)
 
-#Factor Input
-#factor_entry = Entry(frame, text = f"Enter scale factor")
-#root.bind('<Return>', scale_shape_up(shapes[shape_index], ax, factor_entry))
+#Factor Input+Button
+factor_entry = Entry(frame_2, text = "Enter scale factor", width = 5)
+factor_scale_button = Button(frame_2, text="Scale Shape", command=lambda:scale_shape(ax))
 
+factor_entry.pack(side=LEFT)
+factor_scale_button.pack(side=LEFT)
+
+width_factor_entry = Entry(frame_2, width=5)
+width_factor_button = Button(frame_2, text="Scale Width", command=lambda:scale_width(ax))
+
+depth_factor_entry = Entry(frame_2, width=5)
+depth_factor_button = Button(frame_2, text="Scale Depth", command=lambda:scale_depth(ax))
+
+height_factor_entry = Entry(frame_2, width=5)
+height_factor_button = Button(frame_2, text="Scale Height", command=lambda:scale_height(ax))
+
+
+width_factor_entry.pack(side=LEFT)
+width_factor_button.pack(side=LEFT)
+
+depth_factor_entry.pack(side=LEFT)
+depth_factor_button.pack(side=LEFT)
+
+height_factor_entry.pack(side=LEFT)
+height_factor_button.pack(side=LEFT)
 
 #QUIT button
 quit_button = Button(frame, text="Quit", command=root.quit)
@@ -220,33 +280,57 @@ clear_button = Button(frame, text="Clear", command = lambda:clear_window(ax))
 next_previous_label = Label(left_frame, text = " \n Select \n Next/Prev \n Shape", font="Calibri 10")
 
 
-next_image = PhotoImage(file="~/gimik/right-arrow.gif")
-previous_image = PhotoImage(file="~/gimik/left-arrow.gif")
-next_button = Button(left_frame, image = next_image, command=lambda:next_shape(shapes))
-previous_button = Button(left_frame, image = previous_image, command=lambda:next_shape(shapes))
+next_image = PhotoImage(file="~/gimik/photos/right-arrow.gif")
+previous_image = PhotoImage(file="~/gimik/photos/left-arrow.gif")
+next_button = Button(left_frame, image = next_image, command=lambda:next_shape(ax))
+previous_button = Button(left_frame, image = previous_image, command=lambda:next_shape(ax))
+
+#Remove Shape Button
+empty_label = Label(left_frame, text="   ")
+
+
+remove_button = Button(left_frame, text=" Remove \n Shape ", command=lambda:remove_shape(ax))
 
 #CREATE SHAPES:
 create_shapes_label = Label(left_frame, text = " Create \n Shape \n", font="Calibri 12 bold")
 
 #Cylinder Button
-cylinder_photo = PhotoImage(file='~/gimik/cylinder.gif')
+cylinder_photo = PhotoImage(file='~/gimik/photos/cylinder.gif')
 create_cylinder_button = Button(left_frame, image=cylinder_photo, height=40, width=40, command = lambda:create_cylinder(ax))
 
 #Spheroid Button
-sphere_photo = PhotoImage(file='~/gimik/sphere.gif')
+sphere_photo = PhotoImage(file='~/gimik/photos/sphere.gif')
 create_sphere_button = Button(left_frame, image=sphere_photo, height=40, width=40, command = lambda:create_sphere(ax))
 
 #Cuboid Button
-cube_photo = PhotoImage(file='~/gimik/cube.gif')
+cube_photo = PhotoImage(file='~/gimik/photos/cube.gif')
 create_cube_button = Button(left_frame, image=cube_photo, height=40, width=40, command = lambda:create_cube(ax))
 
 #Move object buttons
-move_up_button = Button(frame, text = '+z', command=lambda:move_up(ax))
-move_down_button = Button(frame, text = '-z',command=lambda:move_down(ax))
-move_left_button = Button(frame, text = '-x',command=lambda:move_left(ax))
-move_right_button = Button(frame, text = '+x',command=lambda:move_right(ax))
-move_forward_button = Button(frame, text = '+y',command=lambda:move_back(ax))
-move_back_button = Button(frame, text = '-y',command=lambda:move_forward(ax))
+move_z_entry = Entry(frame, width = 5)
+
+move_x_entry = Entry(frame, width = 5)
+
+move_y_entry = Entry(frame, width = 5)
+
+
+move_z_button = Button(frame, text = 'z', command=lambda:move_up(ax))
+
+move_x_button = Button(frame, text = 'x',command=lambda:move_left(ax))
+
+move_y_button = Button(frame, text = 'y',command=lambda:move_back(ax))
+
+
+move_z_entry.pack(side=LEFT)
+move_z_button.pack(side=LEFT)
+
+move_x_entry.pack(side=LEFT)
+move_x_button.pack(side=LEFT)
+
+
+move_y_entry.pack(side=LEFT)
+move_y_button.pack(side=LEFT)
+
 
 #Scale Buttons
 #scale_shape_button = Button(frame, text ='increase')
@@ -263,17 +347,13 @@ create_cube_button.grid(row=3,column=0)
 quit_button.pack(side=RIGHT)
 clear_button.pack(side=RIGHT)
 
-move_up_button.pack(side=LEFT)
-move_down_button.pack(side=LEFT)
-move_right_button.pack(side=LEFT)
-move_left_button.pack(side=LEFT)
-move_forward_button.pack(side=LEFT)
-move_back_button.pack(side=LEFT)
-
 next_previous_label.grid(row=4, column=0)
 
 previous_button.grid(row=5, column=0)
 next_button.grid(row=6,column=0)
+
+empty_label.grid(row=7, column=0)
+remove_button.grid(row=8, column=0)
 
 #factor_entry.pack(side = BOTTOM)
 
