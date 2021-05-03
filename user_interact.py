@@ -17,6 +17,8 @@ from matplotlib.backend_bases import key_press_handler
 shapes = list()
 shape_index = 0
 
+test_workspace = Workspace()
+
 def redraw(axes):
     '''
     Wipes the figure and redraws all of the shapes created by the user.
@@ -24,7 +26,7 @@ def redraw(axes):
         axes: an Axes object that is part of the subplot arrangement.
     '''
     axes.clear()
-    for shape in shapes:
+    for shape in test_workspace.items:
         shape.plot(axes)
     axes.set_ylabel("y")
     axes.set_xlabel("x")
@@ -40,8 +42,7 @@ def clear_window(axes):
     axes.set_ylabel("y")
     axes.set_xlabel("x")
     axes.set_zlabel("z")
-    shapes.clear()
-    shape_index = 0
+    test_workspace.clear_shapes()
 
 
 def next_shape(shapes):
@@ -51,7 +52,7 @@ def next_shape(shapes):
     Args: 
         shapes: a list containing the shape objects currently in the user's workspace.
     '''
-    pass
+    test_workspace.next_shape()
 
 
 def previous_shape(shape_index, shapes):
@@ -61,12 +62,7 @@ def previous_shape(shape_index, shapes):
     Args: 
         shape_index: an integer representing the current shape selected.
     '''
-    print(f'len:{len(shapes)} index:{shape_index}')
-    if shape_index-1 < 0:
-        shape_index = len(shapes)-1
-    else: 
-        shape_index -= 1
-    return shape_index
+    test_workspace.prev_shape()
 
 
 def create_cylinder(axes):
@@ -75,9 +71,9 @@ def create_cylinder(axes):
     Args: 
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    new_cylinder = Cylinder(1,1,1)
-    new_cylinder.plot(axes)
-    shapes.append(new_cylinder)
+    test_workspace.make_cylinder(1,1,1)
+    item_to_plot = test_workspace.items[-1]
+    item_to_plot.plot(axes)
     
 
 def create_sphere(axes):
@@ -86,9 +82,9 @@ def create_sphere(axes):
     Args: 
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    new_sphere = Spheroid(1,1,1)
-    new_sphere.plot(axes)
-    shapes.append(new_sphere)
+    test_workspace.make_spheroid(1,1,1)
+    item_to_plot = test_workspace.items[-1]
+    item_to_plot.plot(axes)
 
 def create_cube(axes):
     '''
@@ -96,72 +92,83 @@ def create_cube(axes):
     Args: 
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    new_cube = Cuboid(1,1,1)
-    new_cube.plot(axes)
-    shapes.append(new_cube)
+    test_workspace.make_cuboid(1,1,1)
+    item_to_plot = test_workspace.items[-1]
+    item_to_plot.plot(axes)
 
-def move_up(shape, axes):
+def move_up(axes):
     '''
     Moves the given shape 1 unit in the positive z direction.
     Args:
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    shape.move_z(1)
-    print(shape)
+    list_pos = test_workspace.items_pos
+    item_to_move = test_workspace.items[list_pos]
+    item_to_move.move_z(1)
     redraw(axes)
 
-def move_down(shape, axes):
+def move_down(axes):
     '''
     Moves the given shape 1 unit in the negative z direction.
     Args:
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    shape.move_z(-1)
+    list_pos = test_workspace.items_pos
+    item_to_move = test_workspace.items[list_pos]
+    item_to_move.move_z(-1)
     redraw(axes)
 
-def move_left(shape, axes):
+def move_left(axes):
     '''
     Moves the given shape 1 unit in the negative x direction.
     Args:
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    shape.move_x(-1)
+    list_pos = test_workspace.items_pos
+    item_to_move = test_workspace.items[list_pos]
+    item_to_move.move_x(-1)
     redraw(axes)
 
-def move_right(shape, axes):
+def move_right(axes):
     '''
     Moves the given shape 1 unit in the positive x direction.
     Args:
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    shape.move_x(1)
+    list_pos = test_workspace.items_pos
+    item_to_move = test_workspace.items[list_pos]
+    item_to_move.move_x(1)
     redraw(axes)
 
-def move_back(shape, axes):
+def move_back(axes):
     '''
     Moves the given shape 1 unit in the positive y direction.
     Args:
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    shape.move_y(1)
+    list_pos = test_workspace.items_pos
+    item_to_move = test_workspace.items[list_pos]
+    item_to_move.move_y(1)
     redraw(axes)
 
-def move_forward(shape, axes):
+def move_forward(axes):
     '''
     Moves the given shape 1 unit in the negative y direction.
     Args:
         shape: a Shape object representing the shape to move.
         axes: an Axes object that is part of the subplot arrangement.
     '''
-    shape.move_y(-1)
+    list_pos = test_workspace.items_pos
+    item_to_move = test_workspace.items[list_pos]
+    item_to_move.move_y(-1)
     redraw(axes)
 
-def scale_shape_up(shape, axes, factor):
+def scale_shape_up(axes, factor):
     '''
     Scales the given shape by a given factor.
     Args:
@@ -169,7 +176,9 @@ def scale_shape_up(shape, axes, factor):
         axes: an Axes object that is part of the subplot arrangement.
         factor: an integer representing the factor to scale the shape by.
     '''
-    shape.scale(factor)
+    list_pos = test_workspace.items_pos
+    item_to_move = test_workspace.items[list_pos]
+    item_to_move.scale(factor)
     redraw(axes)
 
 
@@ -210,8 +219,9 @@ clear_button = Button(frame, text="Clear", command = lambda:clear_window(ax))
 #Select Next or Previous Shape Button
 next_previous_label = Label(left_frame, text = " \n Select \n Next/Prev \n Shape", font="Calibri 10")
 
-next_image = PhotoImage(file="right-arrow.png")
-previous_image = PhotoImage(file="left-arrow.png")
+
+next_image = PhotoImage(file="~/gimik/right-arrow.gif")
+previous_image = PhotoImage(file="~/gimik/left-arrow.gif")
 next_button = Button(left_frame, image = next_image, command=lambda:next_shape(shapes))
 previous_button = Button(left_frame, image = previous_image, command=lambda:next_shape(shapes))
 
@@ -219,24 +229,24 @@ previous_button = Button(left_frame, image = previous_image, command=lambda:next
 create_shapes_label = Label(left_frame, text = " Create \n Shape \n", font="Calibri 12 bold")
 
 #Cylinder Button
-cylinder_photo = PhotoImage(file='cylinder.png')
+cylinder_photo = PhotoImage(file='~/gimik/cylinder.gif')
 create_cylinder_button = Button(left_frame, image=cylinder_photo, height=40, width=40, command = lambda:create_cylinder(ax))
 
 #Spheroid Button
-sphere_photo = PhotoImage(file='sphere.png')
+sphere_photo = PhotoImage(file='~/gimik/sphere.gif')
 create_sphere_button = Button(left_frame, image=sphere_photo, height=40, width=40, command = lambda:create_sphere(ax))
 
 #Cuboid Button
-cube_photo = PhotoImage(file='cube.png')
+cube_photo = PhotoImage(file='~/gimik/cube.gif')
 create_cube_button = Button(left_frame, image=cube_photo, height=40, width=40, command = lambda:create_cube(ax))
 
 #Move object buttons
-move_up_button = Button(frame, text = '+z', command=lambda:move_up(shapes[shape_index], ax))
-move_down_button = Button(frame, text = '-z',command=lambda:move_down(shapes[shape_index], ax))
-move_left_button = Button(frame, text = '-x',command=lambda:move_left(shapes[shape_index], ax))
-move_right_button = Button(frame, text = '+x',command=lambda:move_right(shapes[shape_index], ax))
-move_forward_button = Button(frame, text = '+y',command=lambda:move_back(shapes[shape_index], ax))
-move_back_button = Button(frame, text = '-y',command=lambda:move_forward(shapes[shape_index], ax))
+move_up_button = Button(frame, text = '+z', command=lambda:move_up(ax))
+move_down_button = Button(frame, text = '-z',command=lambda:move_down(ax))
+move_left_button = Button(frame, text = '-x',command=lambda:move_left(ax))
+move_right_button = Button(frame, text = '+x',command=lambda:move_right(ax))
+move_forward_button = Button(frame, text = '+y',command=lambda:move_back(ax))
+move_back_button = Button(frame, text = '-y',command=lambda:move_forward(ax))
 
 #Scale Buttons
 #scale_shape_button = Button(frame, text ='increase')
