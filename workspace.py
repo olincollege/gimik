@@ -32,6 +32,10 @@ class Workspace():
             self._items_pos = len(self.items) - 1
         else:
             self._items_pos += -1
+
+    def remove_shape(self):
+        self._items.remove(self._items[self._items_pos])
+        self.prev_shape()
     
     def clear_shapes(self):
         self._items = list()
