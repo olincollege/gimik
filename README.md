@@ -12,9 +12,14 @@ We are using libraries built into Python to create the program, so no other inst
 ### Usage 
 
 Clone this repo to your local machine and navigate to the gimik folder.
+
 Run `python main.py` to start the gimik program.
 
-Use the buttons on the screen to create, select, and remove shapes. The shape that is selected will turn yellow. Use the entry boxes on the bottom of the screen to scale and move the shapes by a chosen value.
+Instructions:
+* Use the buttons on the screen to create, select, and remove shapes. 
+* The shape that is selected will turn yellow. 
+* Use the entry boxes on the bottom of the screen to scale and move the shapes by a chosen value.
+
 **Note** that for the figure to reload, you must right click the screen.
 
 ### Contributors
