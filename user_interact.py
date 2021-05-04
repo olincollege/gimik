@@ -8,6 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 from tkinter import *
+from tkinter import messagebox
 
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.figure import Figure
@@ -106,7 +107,7 @@ def move_z(axes):
         item_to_move.move_z(float(move_z_entry.get()))
         redraw(axes)
     except ValueError:
-        print("ValueError: please enter a float!")
+        messagebox.showerror("ValueError","Please enter a float!")
 
 
 def move_x(axes):
@@ -123,7 +124,7 @@ def move_x(axes):
         item_to_move.move_x(float(move_x_entry.get()))
         redraw(axes)
     except ValueError:
-        print("ValueError: please enter a float!")
+        messagebox.showerror("ValueError","Please enter a float!")
 
 def move_y(axes):
     '''
@@ -139,7 +140,7 @@ def move_y(axes):
         item_to_move.move_y(float(move_y_entry.get()))
         redraw(axes)
     except ValueError:
-        print("ValueError: please enter a float!")
+        messagebox.showerror("ValueError","Please enter a float!")
 
 def scale_shape(axes):
     '''
@@ -156,7 +157,7 @@ def scale_shape(axes):
         item_to_move.scale(float(factor_entry.get()))
         redraw(axes)
     except ValueError:
-        print("ValueError: please enter a float!")
+        messagebox.showerror("ValueError","Please enter a float!")
 
 def scale_width(axes):
     try:
@@ -166,7 +167,7 @@ def scale_width(axes):
         item_to_move.scale_width(float(width_factor_entry.get()))
         redraw(axes)
     except ValueError:
-        print("ValueError: please enter a float!")
+        messagebox.showerror("ValueError","Please enter a float!")
 
 def scale_depth(axes):
     try:
@@ -176,7 +177,7 @@ def scale_depth(axes):
         item_to_move.scale_depth(float(depth_factor_entry.get()))
         redraw(axes)
     except ValueError:
-        print("ValueError: please enter a float!")
+        messagebox.showerror("ValueError","Please enter a float!")
 
 def scale_height(axes):
     try:
@@ -186,151 +187,162 @@ def scale_height(axes):
         item_to_move.scale_height(float(height_factor_entry.get()))
         redraw(axes)
     except ValueError:
-        print("ValueError: please enter a float!")
+        messagebox.showerror("ValueError","Please enter a float!")
 
 
-root=Tk()
-root.title("GIMIK")
+def create_gimik():
 
-fig = Figure(figsize=(5,5), dpi=100)
-canvas = FigureCanvasTkAgg(fig, master=root)
-canvas.draw()
+    root=Tk()
+    root.title("GIMIK")
 
-ax = fig.add_subplot(111, projection='3d')
+    #setup icon photo
+    photo = PhotoImage(file = 'computer.png')
+    root.iconphoto(False, photo)
 
-ax.set_ylabel("y")
-ax.set_xlabel("x")
-ax.set_zlabel("z")
+    fig = Figure(figsize=(5,5), dpi=100)
+    canvas = FigureCanvasTkAgg(fig, master=root)
+    canvas.draw()
 
-toolbar = NavigationToolbar2Tk(canvas, root, pack_toolbar=False)
-toolbar.update()
+    ax = fig.add_subplot(111, projection='3d')
 
-#create frame where buttons will sit on the window
-frame = Frame(root)
-frame.pack(side= BOTTOM)
+    ax.set_ylabel("y")
+    ax.set_xlabel("x")
+    ax.set_zlabel("z")
 
-frame_2 = Frame(root)
-frame_2.pack(side=BOTTOM)
+    toolbar = NavigationToolbar2Tk(canvas, root, pack_toolbar=False)
+    toolbar.update()
 
-left_frame = Frame(root)
-left_frame.pack(side=LEFT)
+    #create frames where buttons will sit on the window
+    bottom_frame = Frame(root)
+    bottom_frame.pack(side= BOTTOM)
 
-#Factor Input+Button
-factor_entry = Entry(frame_2, text = "Enter scale factor", width = 5)
-factor_scale_button = Button(frame_2, text="Scale Shape", command=lambda:scale_shape(ax))
+    bottom_frame_2 = Frame(root)
+    bottom_frame_2.pack(side=BOTTOM)
 
-factor_entry.pack(side=LEFT)
-factor_scale_button.pack(side=LEFT)
+    left_frame = Frame(root)
+    left_frame.pack(side=LEFT)
 
-width_factor_entry = Entry(frame_2, width=5)
-width_factor_button = Button(frame_2, text="Scale Width", command=lambda:scale_width(ax))
+    #Factor Input+Button
+    factor_entry = Entry(bottom_frame_2, text = "Enter scale factor", width = 5)
+    factor_scale_button = Button(bottom_frame_2, text="Scale Shape", command=lambda:scale_shape(ax))
 
-depth_factor_entry = Entry(frame_2, width=5)
-depth_factor_button = Button(frame_2, text="Scale Depth", command=lambda:scale_depth(ax))
+    factor_entry.pack(side=LEFT)
+    factor_scale_button.pack(side=LEFT)
 
-height_factor_entry = Entry(frame_2, width=5)
-height_factor_button = Button(frame_2, text="Scale Height", command=lambda:scale_height(ax))
+    width_factor_entry = Entry(bottom_frame_2, width=5)
+    width_factor_button = Button(bottom_frame_2, text="Scale Width", command=lambda:scale_width(ax))
 
+    depth_factor_entry = Entry(bottom_frame_2, width=5)
+    depth_factor_button = Button(bottom_frame_2, text="Scale Depth", command=lambda:scale_depth(ax))
 
-width_factor_entry.pack(side=LEFT)
-width_factor_button.pack(side=LEFT)
-
-depth_factor_entry.pack(side=LEFT)
-depth_factor_button.pack(side=LEFT)
-
-height_factor_entry.pack(side=LEFT)
-height_factor_button.pack(side=LEFT)
-
-#QUIT button
-quit_button = Button(frame, text="Quit", command=root.quit)
-
-#Clear Canvas Button 
-clear_button = Button(frame, text="Clear", command = lambda:clear_window(ax))
-
-#Select Next or Previous Shape Button
-next_previous_label = Label(left_frame, text = " \n Select \n Next/Prev \n Shape", font="Calibri 10")
+    height_factor_entry = Entry(bottom_frame_2, width=5)
+    height_factor_button = Button(bottom_frame_2, text="Scale Height", command=lambda:scale_height(ax))
 
 
-next_image = PhotoImage(file="~/gimik/photos/right-arrow.gif")
-previous_image = PhotoImage(file="~/gimik/photos/left-arrow.gif")
-next_button = Button(left_frame, image = next_image, command=lambda:next_shape(ax))
-previous_button = Button(left_frame, image = previous_image, command=lambda:next_shape(ax))
+    width_factor_entry.pack(side=LEFT)
+    width_factor_button.pack(side=LEFT)
 
-#Remove Shape Button
-empty_label = Label(left_frame, text="   ")
+    depth_factor_entry.pack(side=LEFT)
+    depth_factor_button.pack(side=LEFT)
 
+    height_factor_entry.pack(side=LEFT)
+    height_factor_button.pack(side=LEFT)
 
-remove_button = Button(left_frame, text=" Remove \n Shape ", command=lambda:remove_shape(ax))
+    #QUIT button
+    quit_button = Button(left_frame, text="Quit", command=root.quit, height = 3, width = 7)
 
-#CREATE SHAPES:
-create_shapes_label = Label(left_frame, text = " Create \n Shape \n", font="Calibri 12 bold")
+    #Clear Canvas Button 
+    clear_button = Button(left_frame, text="Clear", command = lambda:clear_window(ax), height = 3, width = 7)
 
-#Cylinder Button
-cylinder_photo = PhotoImage(file='~/gimik/photos/cylinder.gif')
-create_cylinder_button = Button(left_frame, image=cylinder_photo, height=40, width=40, command = lambda:create_cylinder(ax))
-
-#Spheroid Button
-sphere_photo = PhotoImage(file='~/gimik/photos/sphere.gif')
-create_sphere_button = Button(left_frame, image=sphere_photo, height=40, width=40, command = lambda:create_sphere(ax))
-
-#Cuboid Button
-cube_photo = PhotoImage(file='~/gimik/photos/cube.gif')
-create_cube_button = Button(left_frame, image=cube_photo, height=40, width=40, command = lambda:create_cube(ax))
-
-#Move object buttons
-move_z_entry = Entry(frame, width = 5)
-
-move_x_entry = Entry(frame, width = 5)
-
-move_y_entry = Entry(frame, width = 5)
+    #Select Next or Previous Shape Button
+    next_previous_label = Label(left_frame, text = " \n Select \n Next/Prev \n Shape", font="Calibri 10")
 
 
-move_z_button = Button(frame, text = 'z', command=lambda:move_z(ax))
+    next_image = PhotoImage(file="~/gimik/photos/right-arrow.gif")
+    previous_image = PhotoImage(file="~/gimik/photos/left-arrow.gif")
+    next_button = Button(left_frame, image = next_image, command=lambda:next_shape(ax), height=40, width=40)
+    previous_button = Button(left_frame, image = previous_image, command=lambda:next_shape(ax),height=40,width=40)
 
-move_x_button = Button(frame, text = 'x',command=lambda:move_x(ax))
-
-move_y_button = Button(frame, text = 'y',command=lambda:move_y(ax))
-
-
-move_z_entry.pack(side=LEFT)
-move_z_button.pack(side=LEFT)
-
-move_x_entry.pack(side=LEFT)
-move_x_button.pack(side=LEFT)
+    #Remove Shape Button
+    empty_label = Label(left_frame, text="   ")
 
 
-move_y_entry.pack(side=LEFT)
-move_y_button.pack(side=LEFT)
+    remove_button = Button(left_frame, text=" Remove \n Shape ", command=lambda:remove_shape(ax), height = 3, width = 7)
+
+    #CREATE SHAPES:
+    create_shapes_label = Label(left_frame, text = " Create \n Shape \n", font="Calibri 12 bold")
+
+    #Cylinder Button
+    cylinder_photo = PhotoImage(file='~/gimik/photos/cylinder.gif')
+    create_cylinder_button = Button(left_frame, image=cylinder_photo, height=40, width=40, command = lambda:create_cylinder(ax))
+
+    #Spheroid Button
+    sphere_photo = PhotoImage(file='~/gimik/photos/sphere.gif')
+    create_sphere_button = Button(left_frame, image=sphere_photo, height=40, width=40, command = lambda:create_sphere(ax))
+
+    #Cuboid Button
+    cube_photo = PhotoImage(file='~/gimik/photos/cube.gif')
+    create_cube_button = Button(left_frame, image=cube_photo, height=40, width=40, command = lambda:create_cube(ax))
+
+    #Move object buttons
+
+    move_label = Label(bottom_frame, text='Move Center of Shape:')
+    move_label.pack(side=LEFT)
+
+    move_z_entry = Entry(bottom_frame, width = 5)
+
+    move_x_entry = Entry(bottom_frame, width = 5)
+
+    move_y_entry = Entry(bottom_frame, width = 5)
 
 
-#Scale Buttons
-#scale_shape_button = Button(frame, text ='increase')
+    move_z_button = Button(bottom_frame, text = 'move z', command=lambda:move_z(ax))
 
-#Label(s) Positions
-create_shapes_label.grid(row=0,column=0)
+    move_x_button = Button(bottom_frame, text = 'move x',command=lambda:move_x(ax))
+
+    move_y_button = Button(bottom_frame, text = 'move y',command=lambda:move_y(ax))
 
 
-#Button Positioning: 
-create_cylinder_button.grid(row=1,column=0)
-create_sphere_button.grid(row=2,column=0)
-create_cube_button.grid(row=3,column=0)
+    move_z_entry.pack(side=LEFT)
+    move_z_button.pack(side=LEFT)
 
-quit_button.pack(side=RIGHT)
-clear_button.pack(side=RIGHT)
+    move_x_entry.pack(side=LEFT)
+    move_x_button.pack(side=LEFT)
 
-next_previous_label.grid(row=4, column=0)
 
-previous_button.grid(row=5, column=0)
-next_button.grid(row=6,column=0)
+    move_y_entry.pack(side=LEFT)
+    move_y_button.pack(side=LEFT)
 
-empty_label.grid(row=7, column=0)
-remove_button.grid(row=8, column=0)
 
-#factor_entry.pack(side = BOTTOM)
+    #Scale Buttons
+    #scale_shape_button = Button(bottom_frame, text ='increase')
 
-#scale_shape_button.pack(side=BOTTOM)
+    #Label(s) Positions
+    create_shapes_label.grid(row=0,column=0)
 
-toolbar.pack(side=BOTTOM, fill=X)
-canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-root.mainloop()
+    #Button Positioning: 
+    create_cylinder_button.grid(row=1,column=0)
+    create_sphere_button.grid(row=2,column=0)
+    create_cube_button.grid(row=3,column=0)
+
+    next_previous_label.grid(row=4, column=0)
+
+    previous_button.grid(row=5, column=0)
+    next_button.grid(row=6,column=0)
+
+    empty_label.grid(row=7, column=0)
+    remove_button.grid(row=8, column=0)
+
+    clear_button.grid(row=9, column=0)
+    quit_button.grid(row=10, column=0)
+
+
+    #factor_entry.pack(side = BOTTOM)
+
+    #scale_shape_button.pack(side=BOTTOM)
+
+    toolbar.pack(side=BOTTOM, fill=X)
+    canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+    root.mainloop()
