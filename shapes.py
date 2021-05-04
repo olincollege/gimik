@@ -170,21 +170,21 @@ class Cuboid(Shape):
         self._z = z_coord
 
     @property
-    def x(self):
+    def x_pos(self):
         '''
         Returns the private attribute.
         '''
         return self._x
 
     @property
-    def y(self):
+    def y_pos(self):
         '''
         Returns the private attribute.
         '''
         return self._y
 
     @property
-    def z(self):
+    def z_pos(self):
         '''
         Returns the private attribute.
         '''
@@ -378,21 +378,21 @@ class Spheroid(Shape):
         self._z = z_coord
 
     @property
-    def x(self):
+    def x_pos(self):
         '''
         Returns the private attribute.
         '''
         return self._x
 
     @property
-    def y(self):
+    def y_pos(self):
         '''
         Returns the private attribute.
         '''
         return self._y
 
     @property
-    def z(self):
+    def z_pos(self):
         '''
         Returns the private attribute.
         '''
@@ -527,11 +527,11 @@ class Spheroid(Shape):
         z_vals = self._depth/2 * np.outer(np.ones(np.size(u_vals)),
         np.cos(v_vals))
         for item in x_vals:
-            item += self.x
+            item += self.x_pos
         for item in y_vals:
-            item += self.y
+            item += self.y_pos
         for item in z_vals:
-            item += self.z
+            item += self.z_pos
         axes.plot_surface(x_vals, y_vals, z_vals, color=color)
 
     def __repr__(self):
@@ -572,21 +572,21 @@ class Cylinder(Shape):
         self._z = z_coord
 
     @property
-    def x(self):
+    def x_pos(self):
         '''
         Returns the private attribute.
         '''
         return self._x
 
     @property
-    def y(self):
+    def y_pos(self):
         '''
         Returns the private attribute.
         '''
         return self._y
 
     @property
-    def z(self):
+    def z_pos(self):
         '''
         Returns the private attribute.
         '''
@@ -717,12 +717,12 @@ class Cylinder(Shape):
         radius_x = 1/2*self.width
         radius_y = 1/2*self.depth
 
-        z = np.linspace(0-(self.height/2), self.height-(self.height/2), 50)
+        z_vals = np.linspace(0-(self.height/2), self.height-(self.height/2), 50)
         theta = np.linspace(0, 2*np.pi, 50)
-        theta_grid, z_grid = np.meshgrid(theta, z)
+        theta_grid, z_grid = np.meshgrid(theta, z_vals)
 
-        x_grid = radius_x*np.cos(theta_grid) + self.x
-        y_grid = radius_y*np.sin(theta_grid) + self.y
+        x_grid = radius_x*np.cos(theta_grid) + self._x
+        y_grid = radius_y*np.sin(theta_grid) + self._y
 
         rstride = 20
         cstride = 10
