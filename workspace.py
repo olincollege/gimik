@@ -72,34 +72,73 @@ class Workspace():
         self._items = list()
         self._items_pos = 0
 
-    def make_cuboid(self, width, height, depth, x=0, y=0, z=0,
-                    name='An unnamed cuboid'):
+    def make_cuboid(self, width, height, depth, x_coord=0, y_coord=0,
+        z_coord=0, name='An unnamed cuboid'):
         '''
         Creates a rectangular prism of length, width, and height one at the
         origin. Also advances the current item to this prism.
+
+        Arguments:
+            width. A float representing the width of the shape.
+            height: A float representing the height of the shape.
+            depth: A float representing the depth of the shape.
+            x_coord. A float representing the x-coordinate of the center of
+             the shape.
+            y_coord. A float representing the y-coordinate of the center of
+             the shape.
+            z_coord. A float representing the z-coordinate of the center of
+             the shape.
+            name. A string representing a name to characterize the shape.
         '''
 
-        self._items.append(Cuboid(width, height, depth, x, y, z, name))
+        self._items.append(Cuboid(width, height, depth, x_coord, y_coord,
+        z_coord, name))
         self._items_pos = len(self._items) - 1
 
-    def make_spheroid(self, width, height, depth, x=0, y=0, z=0,
-                      name='An unnamed spheroid'):
+    def make_spheroid(self, width, height, depth, x_coord=0, y_coord=0,
+        z_coord=0, name='An unnamed spheroid'):
         '''
         Creates a spheroid of length, width, and height one at the
         origin. Also advances the current item to this spheroid.
+
+        Arguments:
+            width. A float representing the width of the shape.
+            height: A float representing the height of the shape.
+            depth: A float representing the depth of the shape.
+            x_coord. A float representing the x-coordinate of the center of
+             the shape.
+            y_coord. A float representing the y-coordinate of the center of
+             the shape.
+            z_coord. A float representing the z-coordinate of the center of
+             the shape.
+            name. A string representing a name to characterize the shape.
         '''
 
-        self._items.append(Spheroid(width, height, depth, x, y, z, name))
+        self._items.append(Spheroid(width, height, depth, x_coord, y_coord,
+        z_coord, name))
         self._items_pos = len(self._items) - 1
 
-    def make_cylinder(self, width, height, depth, x=0, y=0, z=0,
-                      name='An unnamed cylinder'):
+    def make_cylinder(self, width, height, depth, x_coord=0, y_coord=0,
+        z_coord=0, name='An unnamed cylinder'):
         '''
         Creates a cylinder of length, width, and height one at the
         origin. Also advances the current item to this cylinder.
+        
+        Arguments:
+            width. A float representing the width of the shape.
+            height: A float representing the height of the shape.
+            depth: A float representing the depth of the shape.
+            x_coord. A float representing the x-coordinate of the center of
+             the shape.
+            y_coord. A float representing the y-coordinate of the center of
+             the shape.
+            z_coord. A float representing the z-coordinate of the center of
+             the shape.
+            name. A string representing a name to characterize the shape.
         '''
 
-        self._items.append(Cylinder(width, height, depth, x, y, z, name))
+        self._items.append(Cylinder(width, height, depth, x_coord, y_coord,
+        z_coord, name))
         self._items_pos = len(self._items) - 1
 
     def __repr__(self):
