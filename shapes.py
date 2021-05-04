@@ -82,52 +82,52 @@ class Shape():
         A placeholder function to be overwritten by the subclass.
         '''
 
-    def set_pos(self, x, y, z):
+    def set_pos(self, x_coord, y_coord, z_coord):
         '''
         Sets the x, y, and z coordinates of the shape to the values specified
         in the inputs.
 
         Arguments:
-            x. A float representing the new x-coordinate of the center of the
+            x_coord. A float representing the new x-coordinate of the center of the
             shape.
-            y. A float representing the new y-coordinate of the center of the
+            y_coord. A float representing the new y-coordinate of the center of the
             shape.
-            z. A float representing the new z-coordinate of the center of the
+            z_coord. A float representing the new z-coordinate of the center of the
             shape.
         '''
-        self._x = x
-        self._y = y
-        self._z = z
+        self._x = x_coord
+        self._y = y_coord
+        self._z = z_coord
 
-    def set_x(self, x):
+    def set_x(self, x_coord):
         '''
         Sets the x coordinate of the shape to the value specified in the input.
 
         Arguments:
-            x. A float representing the new x-coordinate of the center of the
-            shape.
+            x_coord. A float representing the new x-coordinate of the center
+            of the shape.
         '''
-        self._x = x
+        self._x = x_coord
 
-    def set_y(self, y):
+    def set_y(self, y_coord):
         '''
         Sets the y coordinate of the shape to the value specified in the input.
 
         Arguments:
-            y. A float representing the new y-coordinate of the center of the
-            shape.
+            y_coord. A float representing the new y-coordinate of the center
+            of the shape.
         '''
-        self._y = y
+        self._y = y_coord
 
-    def set_z(self, z):
+    def set_z(self, z_coord):
         '''
         Sets the z coordinate of the shape to the value specified in the input.
 
         Arguments:
-            z. A float representing the new z-coordinate of the center of the
-            shape.
+            z_coord. A float representing the new z-coordinate of the center
+            of the shape.
         '''
-        self._z = z
+        self._z = z_coord
 
     @abstractmethod
     def plot(self, axes, color = 'lightskyblue'):
@@ -156,7 +156,7 @@ class Cuboid(Shape):
         _name. A string representing a name to characterize the cuboid.
     '''
 
-    def __init__(self, width, height, depth, x=0, y=0, z=0,
+    def __init__(self, width, height, depth, x_coord=0, y_coord=0, z_coord=0,
                  name='An unnamed cuboid'):
         self._width = width
         self._height = height
@@ -165,9 +165,9 @@ class Cuboid(Shape):
 
         # Coordinates of center of the shape (if none given, puts
         # shape at origin)
-        self._x = x
-        self._y = y
-        self._z = z
+        self._x = x_coord
+        self._y = y_coord
+        self._z = z_coord
 
     @property
     def x(self):
@@ -189,7 +189,7 @@ class Cuboid(Shape):
         Returns the private attribute.
         '''
         return self._z
-    
+
     @property
     def height(self):
         '''
@@ -320,25 +320,25 @@ class Cuboid(Shape):
         max_z = self._z + self._depth / 2
 
         # top
-        X, Z, Y = get_points_to_plot(max_x, min_x, max_z, min_z, max_y)
-        axes.plot_surface(X, Y, Z, color=color)
+        x_a, z_a, y_a = get_points_to_plot(max_x, min_x, max_z, min_z, max_y)
+        axes.plot_surface(x_a, y_a, z_a, color=color)
         # bottom
-        X, Z, Y = get_points_to_plot(max_x, min_x, max_z, min_z, min_y)
-        axes.plot_surface(X, Y, Z, color=color)
+        x_a, z_a, y_a = get_points_to_plot(max_x, min_x, max_z, min_z, min_y)
+        axes.plot_surface(x_a, y_a, z_a, color=color)
 
         # left
-        Y, Z, X = get_points_to_plot(max_y, min_y, max_z, min_z, min_x)
-        axes.plot_surface(X, Y, Z, color=color)
+        y_a, z_a, x_a = get_points_to_plot(max_y, min_y, max_z, min_z, min_x)
+        axes.plot_surface(x_a, y_a, z_a, color=color)
         # right
-        Y, Z, X = get_points_to_plot(max_y, min_y, max_z, min_z, max_x)
-        axes.plot_surface(X, Y, Z, color=color)
+        y_a, z_a, x_a = get_points_to_plot(max_y, min_y, max_z, min_z, max_x)
+        axes.plot_surface(x_a, y_a, z_a, color=color)
 
         # front
-        X, Y, Z = get_points_to_plot(max_x, min_x, max_y, min_y, max_z)
-        axes.plot_surface(X, Y, Z, color=color)
+        x_a, y_a, z_a = get_points_to_plot(max_x, min_x, max_y, min_y, max_z)
+        axes.plot_surface(x_a, y_a, z_a, color=color)
         # back
-        X, Y, Z = get_points_to_plot(max_x, min_x, max_y, min_y, min_z)
-        axes.plot_surface(X, Y, Z, color=color)
+        x_a, y_a, z_a = get_points_to_plot(max_x, min_x, max_y, min_y, min_z)
+        axes.plot_surface(x_a, y_a, z_a, color=color)
 
     def __repr__(self):
         return f'Name: {self.name}\nWidth:{self._width}\nHeight:\
@@ -364,7 +364,7 @@ class Spheroid(Shape):
         _name. A string representing a name to characterize the spheroid.
     '''
 
-    def __init__(self, width, height, depth, x=0, y=0, z=0,
+    def __init__(self, width, height, depth, x_coord=0, y_coord=0, z_coord=0,
                  name='An unnamed spheroid'):
         self._width = width
         self._height = height
@@ -373,9 +373,9 @@ class Spheroid(Shape):
 
         # Coordinates of center of the shape (if none given,
         # puts shape at origin)
-        self._x = x
-        self._y = y
-        self._z = z
+        self._x = x_coord
+        self._y = y_coord
+        self._z = z_coord
 
     @property
     def x(self):
@@ -520,18 +520,19 @@ class Spheroid(Shape):
             color. A string representing the color of the shape to be plotted.
             Defaults to 'lightskyblue' unless otherwise specified.
         '''
-        u = np.linspace(0, 2 * np.pi, 50)
-        v = np.linspace(0, np.pi, 50)
-        x = self._width/2 * np.outer(np.cos(u), np.sin(v))
-        y = self._height/2 * np.outer(np.sin(u), np.sin(v))
-        z = self._depth/2 * np.outer(np.ones(np.size(u)), np.cos(v))
-        for item in x:
+        u_vals = np.linspace(0, 2 * np.pi, 50)
+        v_vals = np.linspace(0, np.pi, 50)
+        x_vals = self._width/2 * np.outer(np.cos(u_vals), np.sin(v_vals))
+        y_vals = self._height/2 * np.outer(np.sin(u_vals), np.sin(v_vals))
+        z_vals = self._depth/2 * np.outer(np.ones(np.size(u_vals)),
+        np.cos(v_vals))
+        for item in x_vals:
             item += self.x
-        for item in y:
+        for item in y_vals:
             item += self.y
-        for item in z:
+        for item in z_vals:
             item += self.z
-        axes.plot_surface(x, y, z, color=color)
+        axes.plot_surface(x_vals, y_vals, z_vals, color=color)
 
     def __repr__(self):
         return f'Name: {self.name}\nSpheroid:\nWidth: {self._width}\nHeight: \
@@ -557,7 +558,7 @@ class Cylinder(Shape):
         _name. A string representing a name to characterize the cylinder.
     '''
 
-    def __init__(self, width, height, depth, x=0, y=0, z=0,
+    def __init__(self, width, height, depth, x_coord=0, y_coord=0, z_coord=0,
                  name='An unnamed cylinder'):
         self._width = width  # diameter in the x direction
         self._height = height  # height (z direction)
@@ -566,9 +567,9 @@ class Cylinder(Shape):
 
         # Coordinates of center of the shape (if none given,
         # puts shape at origin)
-        self._x = x
-        self._y = y
-        self._z = z
+        self._x = x_coord
+        self._y = y_coord
+        self._z = z_coord
 
     @property
     def x(self):
