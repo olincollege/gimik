@@ -16,12 +16,12 @@ def redraw(axes, user_workspace):
     axes.clear()
     dimensions = list()
     for shape in user_workspace.items:
-        dimensions.append(abs(shape.x - shape.width / 2))
-        dimensions.append(abs(shape.x + shape.width / 2))
-        dimensions.append(abs(shape.y - shape.height / 2))
-        dimensions.append(abs(shape.y + shape.height / 2))
-        dimensions.append(abs(shape.z - shape.depth / 2))
-        dimensions.append(abs(shape.z + shape.depth / 2))
+        dimensions.append(abs(shape.x_pos - shape.width / 2))
+        dimensions.append(abs(shape.x_pos + shape.width / 2))
+        dimensions.append(abs(shape.y_pos - shape.height / 2))
+        dimensions.append(abs(shape.y_pos + shape.height / 2))
+        dimensions.append(abs(shape.z_pos - shape.depth / 2))
+        dimensions.append(abs(shape.z_pos + shape.depth / 2))
 
         if shape is user_workspace.items[user_workspace.items_pos]:
             shape.plot(axes, '#EAEC1D')

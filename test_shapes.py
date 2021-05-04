@@ -16,9 +16,9 @@ def test_starting_positions():
     '''
 
     for shape in shapes:
-        assert shape.x == 0
-        assert shape.y == 0
-        assert shape.z == 0
+        assert shape.x_pos == 0
+        assert shape.y_pos == 0
+        assert shape.z_pos == 0
 
 
 def test_set_pos():
@@ -27,9 +27,9 @@ def test_set_pos():
     '''
     for shape in shapes:
         shape.set_pos(1, 2, 3)
-        assert shape.x == 1
-        assert shape.y == 2
-        assert shape.z == 3
+        assert shape.x_pos == 1
+        assert shape.y_pos == 2
+        assert shape.z_pos == 3
 
 
 def test_set_x():
@@ -38,7 +38,7 @@ def test_set_x():
     '''
     for shape in shapes:
         shape.set_x(4)
-        assert shape.x == 4
+        assert shape.x_pos == 4
 
 
 def test_set_y():
@@ -47,7 +47,7 @@ def test_set_y():
     '''
     for shape in shapes:
         shape.set_y(5)
-        assert shape.y == 5
+        assert shape.y_pos == 5
 
 
 def test_set_z():
@@ -56,7 +56,7 @@ def test_set_z():
     '''
     for shape in shapes:
         shape.set_z(6)
-        assert shape.z == 6
+        assert shape.z_pos == 6
 
 
 def test_getters():
@@ -65,9 +65,9 @@ def test_getters():
     equal to the private properties they're derived from.
     '''
     for shape in shapes:
-        assert shape.x == shape._x
-        assert shape.y == shape._y
-        assert shape.z == shape._z
+        assert shape.x_pos == shape._x
+        assert shape.y_pos == shape._y
+        assert shape.z_pos == shape._z
         assert shape.name == shape._name
         assert shape.width == shape._width
         assert shape.height == shape._height
@@ -81,7 +81,7 @@ def test_move_x():
     for shape in shapes:
         shape.set_pos(0, 0, 0)
         shape.move_x(1)
-        assert shape.x == 1
+        assert shape.x_pos == 1
 
 
 def test_move_y():
@@ -91,7 +91,7 @@ def test_move_y():
     for shape in shapes:
         shape.set_pos(0, 0, 0)
         shape.move_y(1)
-        assert shape.y == 1
+        assert shape.y_pos == 1
 
 
 def test_move_z():
@@ -101,7 +101,7 @@ def test_move_z():
     for shape in shapes:
         shape.set_pos(0, 0, 0)
         shape.move_z(1)
-        assert shape.z == 1
+        assert shape.z_pos == 1
 
 
 def test_scale_width():
