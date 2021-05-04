@@ -1,15 +1,15 @@
-"""
+'''
 Contains the Shape parent class and the shape subclasses containing all the possible 3D shapes.
-"""
+'''
 
 import matplotlib.pyplot as plt
 from abc import ABC, abstractmethod
 import numpy as np
 
 class Shape():
-    """
+    '''
     Add docstring here.
-    """
+    '''
     def __init__(self):
         pass
 
@@ -46,12 +46,12 @@ class Shape():
 #List of Shapes:
 
 class Cuboid(Shape):
-    """
+    '''
     Add docstring here.
-    """
+    '''
     
     def __init__(self, width, height, depth, x = 0, y = 0, z = 0, 
-        name = "An unnamed cuboid"):
+        name = 'An unnamed cuboid'):
         self._width = width
         self._height = height
         self._depth = depth
@@ -133,12 +133,12 @@ class Cuboid(Shape):
         return f'Name: {self.name}\nWidth:{self._width}\nHeight:{self._height}\nDepth:{self._depth}\nCoordinates:{self._x},{self._y},{self._z}'
 
 class Spheroid(Shape):
-    """
+    '''
     Add docstring here.
-    """
+    '''
     
     def __init__(self, width, height, depth, x = 0, y = 0, z = 0,
-        name = "An unnamed spheroid"):
+        name = 'An unnamed spheroid'):
         self._width = width
         self._height = height
         self._depth = depth
@@ -222,12 +222,12 @@ class Spheroid(Shape):
 
 
 class Cylinder(Shape):
-    """
+    '''
     Add docstring here.
-    """
+    '''
     
     def __init__(self, width, height, depth, x = 0, y = 0, z = 0,
-        name = "An unnamed cylinder"):
+        name = 'An unnamed cylinder'):
         self._width = width #diameter in the x direction
         self._height = height #height (z direction)
         self._depth = depth #diameter in the y direction
