@@ -4,6 +4,36 @@ workspace.
 '''
 from tkinter import messagebox
 
+def get_axis_vals(x_dimensions, y_dimensions, z_dimensions):
+    '''
+    Takes lists of the boundaries of shapes each axis and returns the center
+    and range for each of those dimensions.
+
+    Args:
+        x_dimensions. A list of the x-coordinates of all the most-extreme (max
+        or min) faces of shapes in the workspace.
+        y_dimensions. A list of the y-coordinates of all the most-extreme (max
+        or min) faces of shapes in the workspace.
+        z_dimensions. A list of the z-coordinates of all the most-extreme (max
+        or min) faces of shapes in the workspace.
+    '''
+    x_max = max(x_dimensions)
+    x_min = min(x_dimensions)
+    x_center = (x_max + x_min) / 2
+    x_range = x_max - x_min
+
+    y_max = max(y_dimensions)
+    y_min = min(y_dimensions)
+    y_center = (y_max + y_min) / 2
+    y_range = y_max - y_min
+
+    z_max = max(z_dimensions)
+    z_min = min(z_dimensions)
+    z_center = (z_max + z_min) / 2
+    z_range = z_max - z_min
+
+    return x_center, x_range, y_center, y_range, z_center, z_range
+
 def redraw(axes, user_workspace):
     '''
     Updates the matplotlib figure by clearing the axes and redrawing the shapes
@@ -14,14 +44,16 @@ def redraw(axes, user_workspace):
         contains the user's shapes.
     '''
     axes.clear()
-    dimensions = list()
+    x_dimensions = []
+    y_dimensions = []
+    z_dimensions = []
     for shape in user_workspace.items:
-        dimensions.append(abs(shape.x_pos - shape.width / 2))
-        dimensions.append(abs(shape.x_pos + shape.width / 2))
-        dimensions.append(abs(shape.y_pos - shape.height / 2))
-        dimensions.append(abs(shape.y_pos + shape.height / 2))
-        dimensions.append(abs(shape.z_pos - shape.depth / 2))
-        dimensions.append(abs(shape.z_pos + shape.depth / 2))
+        x_dimensions.append(shape.x_pos - shape.width / 2)
+        x_dimensions.append(shape.x_pos + shape.width / 2)
+        y_dimensions.append(shape.y_pos - shape.height / 2)
+        y_dimensions.append(shape.y_pos + shape.height / 2)
+        z_dimensions.append(shape.z_pos - shape.depth / 2)
+        z_dimensions.append(shape.z_pos + shape.depth / 2)
 
         if shape is user_workspace.items[user_workspace.items_pos]:
             shape.plot(axes, '#EAEC1D')
@@ -31,11 +63,16 @@ def redraw(axes, user_workspace):
     axes.set_xlabel('x')
     axes.set_zlabel('z')
 
-    max_dimension = max(dimensions)
+    x_center, x_range, y_center, y_range, z_center, z_range = get_axis_vals(
+        x_dimensions, y_dimensions, z_dimensions
+    )
 
-    axes.auto_scale_xyz([-1.1 * max_dimension, 1.1 * max_dimension],
-    [-1.1 * max_dimension, 1.1 * max_dimension],
-    [-1.1 * max_dimension, 1.1 * max_dimension])
+    max_range = max(x_range, y_range, z_range)
+    max_side = max_range / 2 * 1.1
+
+    axes.auto_scale_xyz([x_center - max_side, x_center + max_side],
+    [y_center - max_side, y_center + max_side],
+    [z_center - max_side, z_center + max_side])
 
 
 def clear_window(axes, user_workspace):
@@ -107,6 +144,7 @@ def create_cylinder(axes, user_workspace):
     user_workspace.make_cylinder(1, 1, 1)
     item_to_plot = user_workspace.items[-1]
     item_to_plot.plot(axes)
+    redraw(axes, user_workspace)
 
 
 def create_sphere(axes, user_workspace):
@@ -121,6 +159,7 @@ def create_sphere(axes, user_workspace):
     user_workspace.make_spheroid(1, 1, 1)
     item_to_plot = user_workspace.items[-1]
     item_to_plot.plot(axes)
+    redraw(axes, user_workspace)
 
 
 def create_cube(axes, user_workspace):
@@ -135,6 +174,7 @@ def create_cube(axes, user_workspace):
     user_workspace.make_cuboid(1, 1, 1)
     item_to_plot = user_workspace.items[-1]
     item_to_plot.plot(axes)
+    redraw(axes, user_workspace)
 
 
 def move_z(axes, user_workspace, move_z_entry):
