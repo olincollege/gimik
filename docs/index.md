@@ -1,10 +1,64 @@
-## Welcome to GitHub Pages
+# GIMIK
+### A simple CAD software
 
 You can use the [editor on GitHub](https://github.com/olincollege/gimik/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+
+
+
+## Big Ideas and Highlights
+
+## What is GIMIK?
+Gimik is a simple CAD software that allows the user to create, remove, scale, and move geometric shapes. It features a GUI and automatically-scaling axes, along with highlighting selected objects for an improved user experience.
+
+GIMIK's inputs are robust against improper input, and the program can handle a 
+
+## Getting GIMIK
+
+### Python Packages
+
+### Getting Files from Github
+
+### Running Tests to Make Sure Everything is Working Properly
+
+## Using GIMIK
+
+### Initializing the Program
+
+### Using buttons
+
+### Saving a Screenshot of the Canvas
+
+## Examples of GIMIK in use
+
+### Initializing the Program
+(video/gif)
+
+### Creating and Manipulating Shapes
+(video/gif)
+
+### Multiple Shapes and Removing Shapes
+(video/gif)
+
+## Attribution for External Resources
+
+### Images for Buttons
+(attribution)
+
+### Image for Main Program
+(attribution)
+
+## Attribution to Authors
+
+### Dasha
+(bio of some sort? we can discuss)
+
+### Han
+(bio of some sort? we can discuss)
+
+# Extra stuff for reference but for to delete later
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
