@@ -218,9 +218,9 @@ class Cuboid(Shape):
         Arguments:
             factor. A float representing the amount the shape will be scaled by
         '''
-        self._width = self._width * factor
-        self._height = self._height * factor
-        self._depth = self._depth * factor
+        self._width = self._width * abs(factor)
+        self._height = self._height * abs(factor)
+        self._depth = self._depth * abs(factor)
 
     def scale_width(self, factor):
         '''
@@ -230,7 +230,7 @@ class Cuboid(Shape):
             factor. A float representing the amount the x-dimension of the
             shape will be scaled by
         '''
-        self._width = self._width * factor
+        self._width = self._width * abs(factor)
 
     def scale_height(self, factor):
         '''
@@ -240,7 +240,7 @@ class Cuboid(Shape):
             factor. A float representing the amount the y-dimension of the
             shape will be scaled by
         '''
-        self._height = self._height * factor
+        self._height = self._height * abs(factor)
 
     def scale_depth(self, factor):
         '''
@@ -250,7 +250,7 @@ class Cuboid(Shape):
             factor. A float representing the amount the z-dimension of the
             shape will be scaled by
         '''
-        self._depth = self._depth * factor
+        self._depth = self._depth * abs(factor)
 
     def move_x(self, displacement):
         '''
@@ -426,9 +426,9 @@ class Spheroid(Shape):
         Arguments:
             factor. A float representing the amount the shape will be scaled by
         '''
-        self._width = self._width * factor
-        self._height = self._height * factor
-        self._depth = self._depth * factor
+        self._width = self._width * abs(factor)
+        self._height = self._height * abs(factor)
+        self._depth = self._depth * abs(factor)
 
     def scale_width(self, factor):
         '''
@@ -438,7 +438,7 @@ class Spheroid(Shape):
             factor. A float representing the amount the x-dimension of the
             shape will be scaled by
         '''
-        self._width = self._width * factor
+        self._width = self._width * abs(factor)
 
     def scale_height(self, factor):
         '''
@@ -448,7 +448,7 @@ class Spheroid(Shape):
             factor. A float representing the amount the y-dimension of the
             shape will be scaled by
         '''
-        self._height = self._height * factor
+        self._height = self._height * abs(factor)
 
     def scale_depth(self, factor):
         '''
@@ -458,7 +458,7 @@ class Spheroid(Shape):
             factor. A float representing the amount the z-dimension of the
             shape will be scaled by
         '''
-        self._depth = self._depth * factor
+        self._depth = self._depth * abs(factor)
 
     def move_x(self, displacement):
         '''
@@ -620,9 +620,9 @@ class Cylinder(Shape):
         Arguments:
             factor. A float representing the amount the shape will be scaled by
         '''
-        self._width = self._width * factor
-        self._height = self._height * factor
-        self._depth = self._depth * factor
+        self._width = self._width * abs(factor)
+        self._height = self._height * abs(factor)
+        self._depth = self._depth * abs(factor)
 
     def scale_width(self, factor):
         '''
@@ -632,7 +632,7 @@ class Cylinder(Shape):
             factor. A float representing the amount the x-dimension of the
             shape will be scaled by
         '''
-        self._width = self._width * factor
+        self._width = self._width * abs(factor)
 
     def scale_height(self, factor):
         '''
@@ -642,7 +642,7 @@ class Cylinder(Shape):
             factor. A float representing the amount the y-dimension of the
             shape will be scaled by
         '''
-        self._height = self._height * factor
+        self._height = self._height * abs(factor)
 
     def scale_depth(self, factor):
         '''
@@ -652,7 +652,7 @@ class Cylinder(Shape):
             factor. A float representing the amount the z-dimension of the
             shape will be scaled by
         '''
-        self._depth = self._depth * factor
+        self._depth = self._depth * abs(factor)
 
     def move_x(self, displacement):
         '''
