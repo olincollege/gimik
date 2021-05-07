@@ -22,6 +22,8 @@ Instructions:
 
 **Note** that for the figure to reload, you must right click the screen.
 
+Please go to our website for a more detailed explanation on how to use our program: https://olincollege.github.io/gimik/
+
 ### Contributors
 * Dasha Chadiuk, Olin College of Engineering '24
 * Han Vakil, Olin College of Engineering '24
