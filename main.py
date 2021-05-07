@@ -55,6 +55,7 @@ def run_gimik():
     photo = PhotoImage(file='photos/computer.png')
     root.iconphoto(False, photo)
 
+    #Create figure that will display workspace shapes:
     fig = Figure(figsize=(5, 5), dpi=100)
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.draw()
@@ -65,6 +66,7 @@ def run_gimik():
     axes.set_xlabel('x')
     axes.set_zlabel('z')
 
+    #Setup the bottom toolbar:
     toolbar = NavigationToolbar2Tk(canvas, root, pack_toolbar=False)
     toolbar.update()
 
@@ -166,10 +168,12 @@ def run_gimik():
         width=7,
     )
 
-    # CREATE SHAPES:
+    # Create Shapes Buttons + Label:
     create_shapes_label = Label(
         left_frame, text=' Create \n Shape \n', font='Calibri 12 bold'
     )
+
+    create_shapes_label.grid(row=0, column=0)
 
     # Cylinder Button
     cylinder_photo = PhotoImage(file='~/gimik/photos/cylinder.png')
@@ -200,6 +204,10 @@ def run_gimik():
         width=40,
         command=lambda: create_cube(axes, user_workspace),
     )
+
+    create_cylinder_button.grid(row=1, column=0)
+    create_sphere_button.grid(row=2, column=0)
+    create_cube_button.grid(row=3, column=0)
 
     # Move object buttons
 
@@ -239,16 +247,8 @@ def run_gimik():
     move_y_entry.pack(side=LEFT)
     move_y_button.pack(side=LEFT)
 
-    # Scale Buttons
-    # scale_shape_button = Button(bottom_frame, text ='increase')
 
-    # Label(s) Positions
-    create_shapes_label.grid(row=0, column=0)
-
-    # Button Positioning:
-    create_cylinder_button.grid(row=1, column=0)
-    create_sphere_button.grid(row=2, column=0)
-    create_cube_button.grid(row=3, column=0)
+    # Other Button Positioning:
 
     next_previous_label.grid(row=4, column=0)
 
@@ -261,13 +261,12 @@ def run_gimik():
     clear_button.grid(row=9, column=0)
     quit_button.grid(row=10, column=0)
 
-    # factor_entry.pack(side = BOTTOM)
 
-    # scale_shape_button.pack(side=BOTTOM)
-
+    #Pack the toolbar on the bottom of the screen
     toolbar.pack(side=BOTTOM, fill=X)
     canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
+    #Run loop to refresh window each time button is pressed
     root.mainloop()
 
 
