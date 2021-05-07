@@ -714,9 +714,9 @@ class Cylinder(Shape):
             Defaults to 'lightskyblue' unless otherwise specified.
         '''
         radius_x = 1/2*self.width
-        radius_y = 1/2*self.depth
+        radius_y = 1/2*self.height
 
-        z_vals = np.linspace(0-(self.height/2), self.height-(self.height/2), 50)
+        z_vals = np.linspace(0-(self.depth/2), self.depth-(self.depth/2), 50)
         theta = np.linspace(0, 2*np.pi, 50)
         theta_grid, z_grid = np.meshgrid(theta, z_vals)
 
