@@ -52,7 +52,7 @@ def run_gimik():
     root.title('GIMIK')
 
     # setup icon photo
-    photo = PhotoImage(file='~/gimik/photos/computer.png')
+    photo = PhotoImage(file='photos/computer.png')
     root.iconphoto(False, photo)
 
     fig = Figure(figsize=(5, 5), dpi=100)
