@@ -40,7 +40,7 @@ An example of working with multiple shapes and removing shapes can be seen here:
 ### Example Creation
 An example creation can be seen here:
 
-![image](Images/example_creation.png):
+![image](Images/example_creation.png)
 
 
 ## Attribution for External Resources
