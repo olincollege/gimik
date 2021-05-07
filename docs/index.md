@@ -20,18 +20,11 @@ For the program to run, make sure you have the following python packages:
 These should be automatically installed with Python. However, if you do not have these already, run the following command in your command line:
 `pip install [package name]` replacing [package name] with whichever package you are missing. Note that this requires pip to be installed for the corresponding version of Python. 
 
-### Usage
+## How to Use GIMIK
 To run the GIMIK program on your machine, navigate to our [github repository](https://github.com/olincollege/gimik) and clone the repository to your local machine. Navigate to the gimik folder and run the following command in your terminal: 
 `python main.py`
 
 This will open the GIMIK window and you are ready to start CADing! 
-
-## Using GIMIK
-
-### Initializing the Program
-To initialize GIMIK, navigate to the folder GIMIK is stored in, and run the command `python main.py` in the terminal. A GIMIK window should appear!
-
-## How to Use GIMIK
 
 ### Using buttons
 To use any of the buttons on the left side of the view, simply click on them. To use any of the moving or scaling options, first enter the desired value into the box to the left of the button, then click the button. Clicking the button multiple times will cause the same effect to happen several times, and you'll have to right or left click on the view space to refresh the figure to show your changes.
