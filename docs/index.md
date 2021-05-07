@@ -1,3 +1,5 @@
+# GIMIK
+
 ## Big Ideas and Highlights
 
 ## What is GIMIK?
