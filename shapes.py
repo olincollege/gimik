@@ -2,9 +2,8 @@
 Contains the Shape parent class and the shape subclasses containing all the
 possible 3D shapes.
 '''
-
-from abc import abstractmethod
 import numpy as np
+from abc import abstractmethod
 
 
 def get_points_to_plot(axis_1_max, axis_1_min, axis_2_max,

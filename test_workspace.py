@@ -3,7 +3,6 @@ Check that workspace functions interacts with shapes correctly
 '''
 
 from workspace import Workspace
-from shapes import Cuboid, Spheroid, Cylinder
 
 def test_next_shape():
     '''
