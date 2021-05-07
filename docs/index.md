@@ -1,6 +1,3 @@
-# GIMIK
-### A simple CAD software
-
 ## Big Ideas and Highlights
 
 ## What is GIMIK?
