@@ -8,32 +8,37 @@
 GIMIK is a simple CAD software that allows the user to create, remove, scale, and move geometric shapes. It features a GUI and automatically-scaling axes, along with highlighting selected objects for an improved user experience. GIMIK's input fields are robust against improper input, the software can handle numerous shapes, and the software can natively save an image of the current workspace.
 
 ## Getting GIMIK
-GIMIK can be gotten by downloading a zip file of the entire repository, or by cloning the repository onto your machine. To download the zip file, click [this link](https://github.com/olincollege/gimik) and click the green arrow in the upper right section of the screen. This should open a popup with a "Download ZIP" option, clicking on it will download a zip archive of the software. Extract the contents of this zip archive, and you'll have GIMIK installed! You can clone the repository by copying the ssh key or https link and git clone on your machine.
 
 ### Python Packages
+GIMIK uses the `tkinter`, `numpy`, and `matplotlib` packages. You may have any or none of these installed already, but it's simple to install any you don't already have. To install a package using pip, run `pip install [package name]` in your command line. Without these packages, GIMIK will not run.
 
 ### Getting Files from Github
+GIMIK can be gotten by downloading a zip file of the entire repository, or by cloning the repository onto your machine. To download the zip file, click [this link](https://github.com/olincollege/gimik) and click the green arrow in the upper right section of the screen. This should open a popup with a "Download ZIP" option, clicking on it will download a zip archive of the software. Extract the contents of this zip archive, and you'll have GIMIK installed! You can clone the repository by copying the ssh key or https link and git clone on your machine.
 
 ### Running Tests to Make Sure Everything is Working Properly
+To ensure GIMIK is running properly, we have provided a series of tests to run on the code. If you don't have the `pytest` module installed, run `pip install pytest` in your command line to get it. Once pytest is set up, navigate to the folder GIMIK is stored in, and run the command `pytest *.py`. If all tests pass, GIMIK should be all set to run! If not, ensure all packages are installed properly. If all packages are installed and all tests don't pass, attempt to start the program and interpret any error messages that come up.
 
 ## Using GIMIK
 
 ### Initializing the Program
+To initialize GIMIK, navigate to the folder GIMIK is stored in, and run the command `python main.py` in the terminal. A GIMIK window should appear!
 
 ### Using buttons
+To use any of the buttons on the left side of the view, simply click on them. To use any of the moving or scaling options, first enter the desired value into the box to the left of the button, then click the button. Clicking the button multiple times will cause the same effect to happen several times, and you'll have to click on the view space to see your effects.
 
 ### Saving a Screenshot of the Canvas
+To save a screenshot of your beautiful creation, simply click the "save" icon below the view space. A popup will open asking where you want to save your image, clicking "Save" once you've navigated to the correct directory will save your image.
 
 ## Examples of GIMIK in use
 
-### Initializing the Program
-(video/gif)
-
 ### Creating and Manipulating Shapes
-(video/gif)
+An example of creating and manipulating shapes can be seen here.
 
 ### Multiple Shapes and Removing Shapes
-(video/gif)
+An example of working with multiple shapes and removing shapes can be seen here.
+
+### Example Creation
+An example creation can be seen here.
 
 ## Attribution for External Resources
 
@@ -43,13 +48,15 @@ GIMIK can be gotten by downloading a zip file of the entire repository, or by cl
 ### Image for Main Program
 (attribution)
 
-## Attribution to Authors
+## Authors
 
 ### Dasha
 (bio of some sort? we can discuss)
 
 ### Han
-(bio of some sort? we can discuss)
+**Han Vakil**
+(picture)
+Han likes when code runs bug free, but likes the feeling of fixing an annoying bug even more. He also has a newfound appreciation for developers of larger CAD programs and the work they do.
 
 # Extra stuff for reference but for to delete later
 
