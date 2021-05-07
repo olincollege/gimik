@@ -87,6 +87,12 @@ def test_starting_positions():
 def test_set_pos(input_coords, output_location):
     '''
     Checks to make sure the set_pos function in Shape is working properly.
+    Args: 
+        input_coord: a list of 3 integers representing the x,y,z coordinates to
+        which a given shape's coordinates will be set to.
+        output_location: a list of 3 integers representing the final x,y, and z
+        coordinates that the shape should have after running the set_pos
+        function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -103,6 +109,11 @@ def test_set_pos(input_coords, output_location):
 def test_set_x(input_coord, output_location):
     '''
     Checks to make sure the set_x function in Shape is working properly.
+    Args: 
+        input_coord: an integer representing the x-coordinate to which a given
+        shape's x-coordinate will be set to.
+        output_location: an integer representing the final x-coordinate that the
+        shape should have after running the set_x function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -118,6 +129,11 @@ def test_set_x(input_coord, output_location):
 def test_set_y(input_coord, output_location):
     '''
     Checks to make sure the set_y function in Shape is working properly.
+    Args: 
+        input_coord: an integer representing the y-coordinate to which a given
+        shape's y-coordinate will be set to.
+        output_location: an integer representing the final y-coordinate that the
+        shape should have after running the set_y function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -133,6 +149,11 @@ def test_set_y(input_coord, output_location):
 def test_set_z(input_coord, output_location):
     '''
     Checks to make sure the set_z function in Shape is working properly.
+    Args: 
+        input_coord: an integer representing the z-coordinate to which a given
+        shape's z-coordinate will be set to.
+        output_location: an integer representing the final z-coordinate that the
+        shape should have after running the set_z function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -168,6 +189,11 @@ def test_getters():
 def test_move_x(input_disp, output_location):
     '''
     Checks to make sure the move_x function in each shape is working properly.
+    Args:
+        input_disp: an integer representing the amount to move the shape's x
+        value by.
+        output_location: an integer representing the final x-coordinate that the
+        given shape should have after running the move_x function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -183,6 +209,11 @@ def test_move_x(input_disp, output_location):
 def test_move_y(input_disp, output_location):
     '''
     Checks to make sure the move_y function in each shape is working properly.
+    Args:
+        input_disp: an integer representing the amount to move the shape's y
+        value by.
+        output_location: an integer representing the final y-coordinate that the
+        given shape should have after running the move_y function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -198,6 +229,11 @@ def test_move_y(input_disp, output_location):
 def test_move_z(input_disp, output_location):
     '''
     Checks to make sure the move_z function in each shape is working properly.
+    Args:
+        input_disp: an integer representing the amount to move the shape's z
+        value by.
+        output_location: an integer representing the final z-coordinate that the
+        given shape should have after running the move_z function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -214,6 +250,11 @@ def test_scale_width(input_factor, output_size):
     '''
     Checks to make sure the scale_width function in each
     shape is working properly.
+    Args:
+        input_factor: an integer representing a number by which to scale the
+        width of the shape.
+        output_size: an integer representing the correct final width that the
+        shape should have after running the scale_width function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -230,6 +271,11 @@ def test_scale_height(input_factor, output_size):
     '''
     Checks to make sure the scale_height function in each
     shape is working properly.
+    Args:
+        input_factor: an integer representing a number by which to scale the
+        height of the shape.
+        output_size: an integer representing the correct final height that the
+        shape should have after running the scale_height function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -246,6 +292,11 @@ def test_scale_depth(input_factor, output_size):
     '''
     Checks to make sure the scale_depth function in each
     shape is working properly.
+    Args:
+        input_factor: an integer representing a number by which to scale the
+        depth of the shape.
+        output_size: an integer representing the correct final depth that the
+        shape should have after running the scale_depth function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
@@ -262,6 +313,10 @@ def test_set_name(input_name, output_name):
     '''
     Checks to make sure the set_name function in each shape is working
     properly.
+    Args: 
+        input_name: a string representing a name to set to a given shape.
+        output_name: a string representing the correct final name to which the
+        input name was set.
     '''
     test_cuboid_1 = Cuboid(1, 1, 1)
     test_spheroid_1 = Spheroid(1, 1, 1)
@@ -276,6 +331,11 @@ def test_set_name(input_name, output_name):
 def test_scale(input_factor, output_size):
     '''
     Checks to make sure the scale function in each shape is working properly.
+    Args:
+        input_factor: an integer or float representing a number to scale all
+        sides of a given shape by.
+        output_size: an integer or float representing the correct final size of
+        of each side of the shape after running this scale function.
     '''
 
     test_cuboid = Cuboid(1, 1, 1)
