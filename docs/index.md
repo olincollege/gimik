@@ -32,13 +32,16 @@ To save a screenshot of your beautiful creation, simply click the "save" icon be
 ## Examples of GIMIK in use
 
 ### Creating and Manipulating Shapes
-An example of creating and manipulating shapes can be seen here.
+An example of creating and manipulating shapes can be seen here:
 
 ### Multiple Shapes and Removing Shapes
-An example of working with multiple shapes and removing shapes can be seen here.
+An example of working with multiple shapes and removing shapes can be seen here:
 
 ### Example Creation
-An example creation can be seen here.
+An example creation can be seen here:
+
+![image](Images/example_creation.png):
+
 
 ## Attribution for External Resources
 
@@ -55,7 +58,9 @@ An example creation can be seen here.
 
 ### Han
 **Han Vakil**
-(picture)
+
+![image](Images/Han_2.PNG)
+
 Han likes when code runs bug free, but likes the feeling of fixing an annoying bug even more. He also has a newfound appreciation for developers of larger CAD programs and the work they do.
 
 # Extra stuff for reference but for to delete later
