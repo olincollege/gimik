@@ -11,7 +11,7 @@ def get_points_to_plot(axis_1_max, axis_1_min, axis_2_max,
     '''
     Gets the points used in plotting the cuboid.
 
-    Arguments:
+    Args:
         axis_1_max. A float representing the maximum value of the first
             input axis.
         axis_1_min. A float representing the minimum value of the first
@@ -23,7 +23,7 @@ def get_points_to_plot(axis_1_max, axis_1_min, axis_2_max,
         axis_3_val. A float representing the (constant) value of the third
             input axis.
 
-    Outputs:
+    Returns:
         axis_1_a. A numpy array of points representing the values of the
             first axis for plotting.
         axis_2_a. A numpy array of points representing the values of the
@@ -58,16 +58,19 @@ class Shape():
         self._y = 0
         self._z = 0
 
+    @abstractmethod
     def move(self):
         '''
         A placeholder function to be overwritten by the subclass.
         '''
-
+    
+    @abstractmethod
     def rotate(self):
         '''
         A placeholder function to be overwritten by the subclass.
         '''
-
+    
+    @abstractmethod
     def scale(self, factor):
         '''
         A placeholder function to be overwritten by the subclass.
@@ -76,6 +79,7 @@ class Shape():
             scale. A float representing the amount to scale the shape by.
         '''
 
+    @abstractmethod
     def __repr__(self):
         '''
         A placeholder function to be overwritten by the subclass.
@@ -86,7 +90,7 @@ class Shape():
         Sets the x, y, and z coordinates of the shape to the values specified
         in the inputs.
 
-        Arguments:
+        Args:
             x_coord. A float representing the new x-coordinate of the center of the
             shape.
             y_coord. A float representing the new y-coordinate of the center of the
@@ -102,7 +106,7 @@ class Shape():
         '''
         Sets the x coordinate of the shape to the value specified in the input.
 
-        Arguments:
+        Args:
             x_coord. A float representing the new x-coordinate of the center
             of the shape.
         '''
@@ -112,7 +116,7 @@ class Shape():
         '''
         Sets the y coordinate of the shape to the value specified in the input.
 
-        Arguments:
+        Args:
             y_coord. A float representing the new y-coordinate of the center
             of the shape.
         '''
@@ -122,7 +126,7 @@ class Shape():
         '''
         Sets the z coordinate of the shape to the value specified in the input.
 
-        Arguments:
+        Args:
             z_coord. A float representing the new z-coordinate of the center
             of the shape.
         '''
@@ -133,7 +137,7 @@ class Shape():
         '''
         Plots the shape on the input axes.
 
-        Arguments:
+        Args:
             axes. A set of matplotlib axes for the shape to be plotted on.
             color. The color for the shape to be plotted with.
         '''
@@ -214,7 +218,7 @@ class Cuboid(Shape):
         '''
         Equally scales all the dimensions of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the shape will be scaled by
         '''
         self._width = self._width * abs(factor)
@@ -225,7 +229,7 @@ class Cuboid(Shape):
         '''
         Scales the x-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the x-dimension of the
             shape will be scaled by
         '''
@@ -235,7 +239,7 @@ class Cuboid(Shape):
         '''
         Scales the y-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the y-dimension of the
             shape will be scaled by
         '''
@@ -245,7 +249,7 @@ class Cuboid(Shape):
         '''
         Scales the z-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the z-dimension of the
             shape will be scaled by
         '''
@@ -256,7 +260,7 @@ class Cuboid(Shape):
         Changes the x-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the x-coordinate of
             the center of the shape will be changed by
         '''
@@ -267,7 +271,7 @@ class Cuboid(Shape):
         Changes the y-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the x-coordinate of
             the center of the shape will be changed by
         '''
@@ -278,7 +282,7 @@ class Cuboid(Shape):
         Changes the z-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the z-coordinate of
             the center of the shape will be changed by
         '''
@@ -289,7 +293,7 @@ class Cuboid(Shape):
         Changes the name of the shape to the name specified by the input
         argument.
 
-        Arguments:
+        Args:
             new_name. A string representing the new name of the shape
         '''
         self._name = new_name
@@ -305,7 +309,7 @@ class Cuboid(Shape):
         '''
         Plots the shape on the input axes.
 
-        Arguments:
+        Args:
             axes. A set of matplotlib axes representing the canvas to draw the
             shape on.
             color. A string representing the color of the shape to be plotted.
@@ -340,6 +344,9 @@ class Cuboid(Shape):
         axes.plot_surface(x_a, y_a, z_a, color=color)
 
     def __repr__(self):
+        '''
+        Return the text representation of a Cuboid object.
+        '''
         return f'Name: {self.name}\nWidth:{self._width}\nHeight:\
         {self._height}\nDepth:{self._depth}\nCoordinates:{self._x},\
         {self._y},{self._z}'
@@ -422,7 +429,7 @@ class Spheroid(Shape):
         '''
         Equally scales all the dimensions of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the shape will be scaled by
         '''
         self._width = self._width * abs(factor)
@@ -433,7 +440,7 @@ class Spheroid(Shape):
         '''
         Scales the x-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the x-dimension of the
             shape will be scaled by
         '''
@@ -443,7 +450,7 @@ class Spheroid(Shape):
         '''
         Scales the y-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the y-dimension of the
             shape will be scaled by
         '''
@@ -453,7 +460,7 @@ class Spheroid(Shape):
         '''
         Scales the z-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the z-dimension of the
             shape will be scaled by
         '''
@@ -464,7 +471,7 @@ class Spheroid(Shape):
         Changes the x-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the x-coordinate of
             the center of the shape will be changed by
         '''
@@ -475,7 +482,7 @@ class Spheroid(Shape):
         Changes the y-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the x-coordinate of
             the center of the shape will be changed by
         '''
@@ -486,7 +493,7 @@ class Spheroid(Shape):
         Changes the z-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the z-coordinate of
             the center of the shape will be changed by
         '''
@@ -497,7 +504,7 @@ class Spheroid(Shape):
         Changes the name of the shape to the name specified by the input
         argument.
 
-        Arguments:
+        Args:
             new_name. A string representing the new name of the shape
         '''
         self._name = new_name
@@ -513,7 +520,7 @@ class Spheroid(Shape):
         '''
         Plots the shape on the input axes.
 
-        Arguments:
+        Args:
             axes. A set of matplotlib axes representing the canvas to draw the
             shape on.
             color. A string representing the color of the shape to be plotted.
@@ -534,6 +541,9 @@ class Spheroid(Shape):
         axes.plot_surface(x_vals, y_vals, z_vals, color=color)
 
     def __repr__(self):
+        '''
+        Return the text representation of a Spheroid object.
+        '''
         return f'Name: {self.name}\nSpheroid:\nWidth: {self._width}\nHeight: \
         {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, \
         {self._y}, {self._z}'
@@ -616,7 +626,7 @@ class Cylinder(Shape):
         '''
         Equally scales all the dimensions of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the shape will be scaled by
         '''
         self._width = self._width * abs(factor)
@@ -627,7 +637,7 @@ class Cylinder(Shape):
         '''
         Scales the x-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the x-dimension of the
             shape will be scaled by
         '''
@@ -637,7 +647,7 @@ class Cylinder(Shape):
         '''
         Scales the y-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the y-dimension of the
             shape will be scaled by
         '''
@@ -647,7 +657,7 @@ class Cylinder(Shape):
         '''
         Scales the z-dimension of the shape by the input factor.
 
-        Arguments:
+        Args:
             factor. A float representing the amount the z-dimension of the
             shape will be scaled by
         '''
@@ -658,7 +668,7 @@ class Cylinder(Shape):
         Changes the x-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the x-coordinate of
             the center of the shape will be changed by
         '''
@@ -669,7 +679,7 @@ class Cylinder(Shape):
         Changes the y-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the x-coordinate of
             the center of the shape will be changed by
         '''
@@ -680,7 +690,7 @@ class Cylinder(Shape):
         Changes the z-coordinate of the center of the shape by the input
         displacement.
 
-        Arguments:
+        Args:
             displacement. A float representing the amount the z-coordinate of
             the center of the shape will be changed by
         '''
@@ -691,7 +701,7 @@ class Cylinder(Shape):
         Changes the name of the shape to the name specified by the input
         argument.
 
-        Arguments:
+        Args:
             new_name. A string representing the new name of the shape
         '''
         self._name = new_name
@@ -707,7 +717,7 @@ class Cylinder(Shape):
         '''
         Plots the shape on the input axes.
 
-        Arguments:
+        Args:
             axes. A set of matplotlib axes representing the canvas to draw the
             shape on.
             color. A string representing the color of the shape to be plotted.
@@ -729,6 +739,9 @@ class Cylinder(Shape):
                           cstride=cstride, color=color)
 
     def __repr__(self):
+        '''
+        Return the text representation of a Cylinder object.
+        '''
         return f'Name: {self.name}\nCylinder:\nWidth: {self._width}\nHeight: \
         {self._height}\nDepth: {self._depth}\nCoordinates: {self._x}, \
         {self._y}, {self._z}'
