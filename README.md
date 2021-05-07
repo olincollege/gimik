@@ -1,6 +1,7 @@
 # GIMIK
+
 ### Project Summary
-GIMIK is a simple CAD program ...
+GIMIK is a simple CAD software that allows the user to create, remove, scale, and move geometric shapes. It features a GUI and automatically-scaling axes, along with highlighting selected objects for an improved user experience. GIMIK's input fields are robust against improper input, the software can handle numerous shapes, and the software can natively save an image of the current workspace.
 
 ### Installation
 Our program requires Python to be installed. If it is not already installed, we recommend doing so using Anaconda. The installation instructions can be found on the [Anaconda Documentation website](https://docs.anaconda.com/anaconda/install/).
